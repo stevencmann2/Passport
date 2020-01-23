@@ -1,0 +1,26 @@
+<div>
+
+  <a href="/logout" id="qsLogoutBtn">
+            <h1> 
+            Logout
+            </h1>
+        </a>
+    
+
+</div>
+
+    <h1> Welcome {{user.nickname}}</h1> 
+    <img src="{{user.picture}}">
+    <h2></h2> User profile
+    <p></p> This is the content of <code>req.user</code></p>
+    <p> Note: <code>_raw</code> and <code>_json</code> properties have been ommited.</p>
+   <div>
+      {{userProfile}}
+
+      </div>
+
+
+
+     {{#if res.locals.user}}
+    <h1>TEst ing</h1>
+    {{/if}}
