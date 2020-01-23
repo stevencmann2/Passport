@@ -11,6 +11,12 @@ var userInViews = require('./lib/middleware/userInViews');
 var authRouter = require('./routes/auth');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var aboutRouter = require('./routes/about');
+var contactRouter = require('./routes/contact');
+var servicesRouter = require('./routes/services');
+
+
+
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
@@ -93,6 +99,12 @@ app.use(userInViews());
 app.use('/', authRouter);
 app.use('/', indexRouter);
 app.use('/', usersRouter);
+app.use('/', aboutRouter);
+app.use('/', contactRouter);
+app.use('/', servicesRouter);
+
+
+
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
