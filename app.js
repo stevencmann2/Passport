@@ -8,12 +8,7 @@ var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
 var flash = require('connect-flash');
 var userInViews = require('./lib/middleware/userInViews');
-var authRouter = require('./routes/auth');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var aboutRouter = require('./routes/about');
-var contactRouter = require('./routes/contact');
-var servicesRouter = require('./routes/services');
+var routes = require('./controllers/passportsController.js')
 
 
 
@@ -96,14 +91,9 @@ app.use(function (req, res, next) {
 });
 
 app.use(userInViews());
-app.use('/', authRouter);
-app.use('/', indexRouter);
-app.use('/', usersRouter);
-app.use('/', aboutRouter);
-app.use('/', contactRouter);
-app.use('/', servicesRouter);
 
-
+// use routes controller
+app.use(routes)
 
 
 // Catch 404 and forward to error handler
@@ -137,28 +127,5 @@ app.use(function (err, req, res, next) {
   });
 });
 
-// app.js
-
-var session = require('express-session');
-
-// config express-session
-var sess = {
-  secret: 'keyboard cat',
-  cookie: {},
-  resave: false,
-  saveUninitialized: true
-};
-
-if (app.get('env') === 'production') {
-  // Use secure cookies in production (requires SSL/TLS)
-  sess.cookie.secure = true;
-
-  // Uncomment the line below if your application is behind a proxy (like on Heroku)
-  // or if you're encountering the error message:
-  // "Unable to verify authorization request state"
-  app.set('trust proxy', 1);
-}
-
-app.use(session(sess));
 
 module.exports = app;

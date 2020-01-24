@@ -1,14 +1,6 @@
-<div>
+{{> navbar}}
 
-  <a href="/logout" id="qsLogoutBtn">
-            <h1> 
-            Logout
-            </h1>
-        </a>
-    
-
-</div>
-
+  <div class="container">
     <h1> Welcome {{user.nickname}}</h1> 
     <img src="{{user.picture}}">
     <h2></h2> User profile
@@ -19,8 +11,7 @@
 
       </div>
 
+</div>
 
 
-     {{#if res.locals.user}}
-    <h1>TEst ing</h1>
-    {{/if}}
+    
