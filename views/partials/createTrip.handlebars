@@ -13,13 +13,13 @@
 <br>
 
 <div class="container">
-    <form>
+    <form id="user-trip-form" method"POST">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
                 <div class="form-group">
                     <label for="Input1">Trip Name</label>
-                    <input name="trip-name" type="text" class="form-control" required>
+                    <input name="trip-name" type="text" class="form-control" id="tripname" required>
                 </div>
                 <div class="col-3"></div>
             </div>
@@ -29,7 +29,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="Input2">Destination</label>
-                    <input name="destination" type="text" class="form-control" required>
+                    <input name="destination" type="text" class="form-control" id="destination" required>
                 </div>
                 <div class="col-3"></div>
             </div>
@@ -39,7 +39,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="Input3">Departing</label>
-                    <input name="departing" type="number" class="form-control" required>
+                    <input name="departing" type="text" class="form-control" id="departing" required>
                 </div>
                 <div class="col-3"></div>
             </div>
@@ -49,7 +49,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="Input4">Returning</label>
-                    <input name="returning" type="number" class="form-control" required>
+                    <input name="returning" type="text" class="form-control" id="returning" required>
                 </div>
                 <div class="col-3"></div>
             </div>
@@ -59,7 +59,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="Input4">Max Budget (dollar amount)</label>
-                    <input name="max-budget" type="number" class="form-control" required>
+                    <input name="max-budget" type="number" class="form-control" id="totalbudget" required>
                 </div>
                 <div class="col-3"></div>
             </div>

@@ -15,6 +15,7 @@ var secured = require('../lib/middleware/secured');
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 ////////EVENTUALLY REQUIRE MODEL HERE FOR DB FUNCTIONS ///////////////////
+const db = require('../models')
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
@@ -22,9 +23,11 @@ var secured = require('../lib/middleware/secured');
 
 /* GET index page. */
 router.get('/', function (req, res, next) {
-    console.log(req.user)
-    res.render('index', { title: 'Welcome to Passport' });
+    // console.log('req.user ' + req.user + 'req.user')
+    res.render('index', {
+        title: 'Welcome to Passport'
     });
+});
 
 
 /* GET about page. */
@@ -36,19 +39,25 @@ router.get('/about', function (req, res, next) {
 
 /* GET services page. */
 router.get('/services', function (req, res, next) {
-    res.render('services', { title: 'Passport Services' });
+    res.render('services', {
+        title: 'Passport Services'
     });
+});
 
 
 /* GET user profile. */
 router.get('/user', secured(), function (req, res, next) {
-    const { _raw, _json, ...userProfile } = req.user;
+    const {
+        _raw,
+        _json,
+        ...userProfile
+    } = req.user;
     res.render('user', {
-      title: 'Dashboard',
-      userProfile: JSON.stringify(userProfile, null, 2)
-      
+        title: 'Dashboard',
+        userProfile: JSON.stringify(userProfile, null, 2)
+        
     });
-  });
+});
 
 ///// FROM AUTH.JS////////////   
 
@@ -57,14 +66,14 @@ router.get('/login', passport.authenticate('auth0', {
     scope: 'openid email profile'
 }), function (req, res) {
     //////////database query for user email or nickname here 
-//  if (if req.user.trip )
+    //  if (if req.user.trip )
     res.redirect('/');
 });
 
 // Perform the final stage of authentication and redirect to previously requested URL or '/user'
 router.get('/callback', function (req, res, next) {
     passport.authenticate('auth0', function (err, user, info) {
-        console.log(user)
+        // console.log(user)
         if (err) {
             return next(err);
         }
@@ -111,5 +120,57 @@ router.get('/contact', function (req, res, next) {
         title: 'Contact our Team'
     });
 });
+
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+/////////////////////////           ////////////////////////////////////
+////////////////////////            ////////////////////////////////////
+
+// POSTING NEW USER & TRIP //
+
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+
+//trip create statement
+router.post("/api/trips", function (req, res) {
+    const {
+        totalbudget,
+        destination,
+        departing,
+        returning
+    } = req.body
+    db.Trip.create({
+        totalbudget,
+        destination,
+        departing,
+        returning
+        }).then(function (data) {
+            // We have access to the new todo as an argument inside of the callback function
+            console.log(req.body)
+            res.json(data);
+            
+        })
+        .catch(function (err) {
+            // Whenever a validation or flag fails, an error is thrown
+            // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+            console.log(req.body)
+            res.json(err);
+        });
+});
+
+
+/* GET MYTRIPS . */
+router.get('/myTrips', function (req, res, next) {
+    res.render('myTrips', {
+        title: 'My Trips'
+    });
+});
+
+
 
 module.exports = router;
