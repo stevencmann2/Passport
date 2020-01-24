@@ -25,10 +25,6 @@
   },
   "homepage": "https://github.com/aw-exe/Passport#readme",
   "dependencies": {
-<<<<<<< HEAD
-    "chart.js": "^2.9.3",
-=======
->>>>>>> steven
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
     "debug": "~4.1.1",
