@@ -12,6 +12,13 @@ var routes = require('./controllers/passportsController.js')
 
 
 
+
+
+////// OR 30000000//////
+const PORT = process.env.PORT ;
+const db = require("./models");
+
+
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
@@ -124,6 +131,12 @@ app.use(function (err, req, res, next) {
   res.render('error', {
     message: err.message,
     error: {}
+  });
+});
+
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
   });
 });
 
