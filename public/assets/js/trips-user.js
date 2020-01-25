@@ -1,14 +1,16 @@
 ///// JQUERY TO DISPLAY THE TRIPS TO THE USER
+ 
 $(document).ready(function() {
+  let timeNow = moment().format("YYYY-MM-DD");
+///////
 notrips = $(".notrips")
 tripsContainer = $(".mytrips-container");
 tableBody= $("#tablebody")
-var trips;
-function getTrips(trips){
+function getTrips(){
 
     $.get("/api/trips" , function(data) {
         console.log("Trips", data);
-         trips = data
+         const trips = data
          console.log(data)
          console.log(trips + 'TRIPS AS DATA')
         if (!trips || !trips.length) {
@@ -16,7 +18,7 @@ function getTrips(trips){
           }
           else {
             console.log('THere are trips');
-            addTableRows();
+            addTableRows(trips);
           }
         
 })
@@ -32,22 +34,31 @@ function displayNoTrips(){
 }
 
 // constructs rows but doesnt fill in the html
-function addTableRows(){
+function addTableRows(trips){
   // tripsContainer.empty();
-    var tripsToAdd = [];
+   
+    
+    
+
+  // ROUTING TO THE TRIPNAME = (ROUTE)
+  // MOMENT TILL IN THE RETURNING
     console.log(trips + "TRIPS LATER")
     for (let i = 0; i < trips.length; i++) {
-      tripsToAdd.push(createNewTrip(trips[i]));
+        let now = moment();
+       let tripDate = moment(trips[i].departing)
+     tableBody.append(`
+     <tr>
+      <td>${trips[i].tripname}</td>
+      <td>${trips[i].destination}</td>
+      <td>${tripDate.diff(now, 'days')}</td>
+    </tr>
+     `)
     }
-    tripsContainer.append(tripToAdd);
-
-}
-
-function createNewTrip(){
-  tableBody.append(
     
-  )
+
 }
+
+
  getTrips();
 
 });
