@@ -25,9 +25,6 @@ function userTripSubmit(event){
 // MAKE SURE PROPERTY NAMES ARE RIGHT
 
 ///// FORMATED NOW AS yyyy-MM-dd
-console.log(`departing ${departing.val()}`)
-console.log(`returning ${returning.val()}` )
-
 let newTrip = {
     tripname: tripName.val().trim(),
     totalbudget: totalBudget.val().trim(),
@@ -52,7 +49,7 @@ $.ajax("/api/trips", {
   function() {
     console.log("added new trip");
     // Reload the page to get the updated list
-    location.reload();
+    window.location.href = "/mytrips";
   }
 );
 }

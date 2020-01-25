@@ -134,16 +134,25 @@ router.get('/contact', function (req, res, next) {
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-
+// GET route for getting all of the posts
+router.get("/api/trips", function(req, res) {
+    db.Trip.findAll({})
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
 
 //trip create statement
 router.post("/api/trips", function (req, res) {
+    console.log(req)
+    
     const {
         totalbudget,
         destination,
         departing,
         returning
     } = req.body
+    console.log(req.body)
     db.Trip.create({
         totalbudget,
         destination,
@@ -151,21 +160,21 @@ router.post("/api/trips", function (req, res) {
         returning
         }).then(function (data) {
             // We have access to the new todo as an argument inside of the callback function
-            console.log(req.body)
+            
             res.json(data);
             
         })
         .catch(function (err) {
             // Whenever a validation or flag fails, an error is thrown
             // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-            console.log(req.body)
+            
             res.json(err);
         });
 });
 
 
 /* GET MYTRIPS . */
-router.get('/myTrips', function (req, res, next) {
+router.get('/mytrips', function (req, res, next) {
     res.render('myTrips', {
         title: 'My Trips'
     });
