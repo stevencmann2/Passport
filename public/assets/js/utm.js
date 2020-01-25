@@ -34,11 +34,12 @@ let newTrip = {
 
 }
 
-console.log(newTrip.totalbudget)
-console.log(newTrip.destination)
-console.log(newTrip.departing)
-console.log(newTrip.returning)
-console.log(newTrip)
+console.log(newTrip.totalbudget, typeof newTrip.totalbudget)
+console.log(newTrip.destination, typeof newTrip.destination)
+console.log(newTrip.departing, typeof newTrip.departing)
+console.log(newTrip.returning, typeof newTrip.returning)
+console.log(newTrip.tripname, typeof newTrip.tripname)
+console.log(newTrip, typeof newTrip)
 
 // Send the POST request.
 

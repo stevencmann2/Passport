@@ -15,7 +15,7 @@ var routes = require('./controllers/passportsController.js')
 
 
 ////// OR 30000000//////
-const PORT = process.env.PORT ;
+const PORT = process.env.PORT;
 const db = require("./models");
 
 
@@ -134,7 +134,7 @@ app.use(function (err, req, res, next) {
   });
 });
 
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

@@ -52,6 +52,8 @@ router.get('/user', secured(), function (req, res, next) {
         _json,
         ...userProfile
     } = req.user;
+
+    // console.log(req.user)
     res.render('user', {
         title: 'Dashboard',
         userProfile: JSON.stringify(userProfile, null, 2)
@@ -116,6 +118,7 @@ router.get('/logout', (req, res) => {
 
 /* GET contact page. */
 router.get('/contact', function (req, res, next) {
+    
     res.render('contact', {
         title: 'Contact our Team'
     });
@@ -144,20 +147,24 @@ router.get("/api/trips", function(req, res) {
 
 //trip create statement
 router.post("/api/trips", function (req, res) {
-    console.log(req)
-    
+    // console.log(req)
+    console.log( 'THIS IS RANDOM AS HELL')
     const {
+        tripname,
         totalbudget,
         destination,
         departing,
         returning
-    } = req.body
+    } = req.body;
+
+    console.log('THese are the trips' + req.body)
     console.log(req.body)
     db.Trip.create({
-        totalbudget,
-        destination,
-        departing,
-        returning
+        tripname: tripname,
+        totalbudget: totalbudget,
+        destination: destination,
+        departing: departing,
+        returning: returning 
         }).then(function (data) {
             // We have access to the new todo as an argument inside of the callback function
             
