@@ -31,3 +31,16 @@ todo_6 VARCHAR(100)
 
 );
 
+
+CREATE TABLE budgetcategory(
+	airfare VARCHAR(100),
+    transportation VARCHAR(100),
+    food VARCHAR(100),
+    lodging VARCHAR(100),
+    activities VARCHAR(100),
+    misc_Other VARCHAR(100),
+    emergency VARCHAR(100)
+    
+
+
+);
