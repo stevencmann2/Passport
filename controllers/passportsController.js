@@ -147,7 +147,9 @@ router.get("/api/trips", function(req, res) {
 
 //trip create statement
 router.post("/api/trips", function (req, res) {
-    // console.log(req)
+    console.log(req)
+    console.log('BREAKBREAKBREAKBREAKBREAKBREAKBREAKBREAKBREAKBREAK')
+    console.log(req.body)
     console.log( 'THIS IS RANDOM AS HELL')
     const {
         tripname,
@@ -159,7 +161,7 @@ router.post("/api/trips", function (req, res) {
 
     console.log('THese are the trips' + req.body)
     console.log(req.body)
-    db.Trip.create({
+    db.trip.create({
         tripname: tripname,
         totalbudget: totalbudget,
         destination: destination,

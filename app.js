@@ -15,7 +15,7 @@ var routes = require('./controllers/passportsController.js')
 
 
 ////// OR 30000000//////
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 const db = require("./models");
 
 
@@ -83,6 +83,10 @@ app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 
 app.use(flash());
 
@@ -99,8 +103,15 @@ app.use(function (req, res, next) {
 
 app.use(userInViews());
 
+
+
 // use routes controller
 app.use(routes)
+
+
+
+
+
 
 
 // Catch 404 and forward to error handler

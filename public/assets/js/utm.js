@@ -44,8 +44,10 @@ console.log(newTrip, typeof newTrip)
 // Send the POST request.
 
 $.ajax("/api/trips", {
+  
   type: "POST",
   data: newTrip
+  
 }).then(
   function() {
     console.log("added new trip");
