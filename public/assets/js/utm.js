@@ -21,14 +21,10 @@ $(userTripForm).on("submit", userTripSubmit);
 ///// HANDLES FORM SUBMIT CLICK
 function userTripSubmit(event){
     event.preventDefault();
-    //double checking values are submitted else returns
-    // if (!totalBudget.val().trim() || !returning.val().trim() 
-    // || !departing.val().trim() || !destination.val().trim() || !tripName.val().trim()){
-    //     return;
-    // }
 // TRIP CONSTRUCTOR POST TO DB
 // MAKE SURE PROPERTY NAMES ARE RIGHT
 
+///// FORMATED NOW AS yyyy-MM-dd
 console.log(`departing ${departing.val()}`)
 console.log(`returning ${returning.val()}` )
 
