@@ -27,7 +27,7 @@ function userTripSubmit(event){
 ///// FORMATED NOW AS yyyy-MM-dd
 let newTrip = {
     tripname: tripName.val().trim(),
-    totalbudget: totalBudget.val().trim(),
+    totalbudget: parseInt(totalBudget.val().trim()),
     destination: destination.val().trim(),
     departing: departing.val(),
     returning: returning.val()
