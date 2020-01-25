@@ -34,12 +34,20 @@ module.exports = function(sequelize, DataTypes) {
         validate: {
           len: [1, 100]
         }
-      },user_id: {
+      },user_ID: {
         type: DataTypes.STRING,     //DataTypes.DATEONLY
         allowNull: false,
         validate: {
           len: [1, 100]
         }
+      },
+      trip_ID: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [4,100]
+        }
+
       }
     });
     
