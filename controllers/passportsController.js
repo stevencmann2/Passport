@@ -21,6 +21,21 @@ const db = require('../models')
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 
+
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+}
+  
+
+
+
+
+
+
+
 /* GET index page. */
 router.get('/', function (req, res, next) {
     // console.log('req.user ' + req.user + 'req.user')
@@ -152,22 +167,25 @@ router.get("/api/trips", function(req, res) {
 //trip create statement
 router.post("/api/trips", function (req, res) {
     const {
-        tripname,
-        totalbudget,
+        trip_name,
+        total_budget,
         destination,
         departing,
         returning
     } = req.body;
-    const userID = req.user.id
+    // const userID = req.user.id
+    //REQ.USER.ID FOR SOME REASON IS SPITTING OUT AN ERROR -DAN
     console.log('THIS IS THE CONSOLE')
-    console.log(req.user.id); 
+    // console.log(req.user.id); 
     db.trip.create({
-        tripname: tripname,
-        totalbudget: totalbudget,
+        trip_name: trip_name,
+        total_budget: total_budget,
         destination: destination,
         departing: departing,
         returning: returning,
-        user_id: userID
+        trip_ID: uuidv4(),
+        user_ID: uuidv4()
+        //user_ID ENTRY IS TEMPORARY! -DAN
          /////////insert foriegn key of user id here 
         }).then(function (data) {
         

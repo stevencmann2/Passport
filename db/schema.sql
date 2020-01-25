@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS base;
+
 CREATE DATABASE base;
 USE base;
 
