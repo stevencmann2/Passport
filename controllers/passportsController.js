@@ -53,6 +53,9 @@ router.get('/user', secured(), function (req, res, next) {
         ...userProfile
     } = req.user;
 
+    // create user w email
+    // then...
+
     // console.log(req);
     // console.log(req.user)
     res.render('user', {
@@ -155,6 +158,7 @@ router.post("/api/trips", function (req, res) {
         departing,
         returning
     } = req.body;
+    const userID = req.user.id
     console.log('THIS IS THE CONSOLE')
     console.log(req.user.id); 
     db.trip.create({
@@ -163,6 +167,7 @@ router.post("/api/trips", function (req, res) {
         destination: destination,
         departing: departing,
         returning: returning,
+        user_id: userID
          /////////insert foriegn key of user id here 
         }).then(function (data) {
         

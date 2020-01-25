@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
       totalbudget: {
-        type: DataTypes.STRING,     //DataTypes.INTEGER
+        type: DataTypes.INTEGER,     //DataTypes.INTEGER
         allowNull: false,
         validate: {
           len: [1, 100]
@@ -34,16 +34,18 @@ module.exports = function(sequelize, DataTypes) {
         validate: {
           len: [1, 100]
         }
+      },user_id: {
+        type: DataTypes.STRING,     //DataTypes.DATEONLY
+        allowNull: false,
+        validate: {
+          len: [1, 100]
+        }
       }
     });
-    Trip.associate = function(models) {
-      // We're saying that a Post should belong to an Author
-      Trip.hasOne(models.User, {
-       
-    });
-
+    
+    return Trip;
   }
 
-    return Trip;
-  };
+    
+ 
   
