@@ -1,9 +1,9 @@
-]
+
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <div class="page-header">
-                    <h1>Trip Name</h1>
+                <div class="page-header ">
+                    <h1>My Trips --  {{user.nickname}}</h1>
                 </div>
             </div>
         </div>
@@ -11,28 +11,39 @@
 
     <br>
 
-    <table class="table table-borderless">
+  
+    <!--DYNAMIC MY TRIPS CONTAINER -->
 
-        <tbody>
+    <div class="row">
+      <div class="col-md-12 notrips">
+      
+    <table class="table table-borderless mytrips-container">
+        <thead>
             <tr>
-                <th scope="row"></th>
-                <td>Heather's 30th!</td>
-                <td>Las Vegas, NV</td>
-                <td>60 days left</td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>Electric Forest</td>
-                <td>Rothbury, MI</td>
-                <td>95 days left</td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>Winter Vacation</td>
-                <td>Bali, Indonesia</td>
-                <td>126 days left</td>
-            </tr>
-        </tbody>
-    </table>
-
-    
+            <th scope="col">Trip Name</th>
+             <th scope="col">Destination</th>
+             <th scope="col">Days Until</th>
+             </tr>
+        </thead>
+        <tbody id="tablebody">
+        <tr>
+      <td>Heather's 30th!</td>
+      <td>Las Vegas, NV</td>
+      <td>60 Days</td>
+    </tr>
+    <tr>
+     
+      <td>Electric Forest</td>
+      <td>Rothbury, MI</td>
+      <td>95 Days</td>
+    </tr>
+    <tr>
+      
+      <td>Winter Vacation</td>
+      <td>Bali, Indonesia</td>
+      <td>126 Days</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    </div>

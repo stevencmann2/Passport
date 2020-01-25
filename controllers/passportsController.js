@@ -53,6 +53,7 @@ router.get('/user', secured(), function (req, res, next) {
         ...userProfile
     } = req.user;
 
+    // console.log(req);
     // console.log(req.user)
     res.render('user', {
         title: 'Dashboard',
@@ -139,7 +140,7 @@ router.get('/contact', function (req, res, next) {
 ////////////////////////////////////////////////////////////////////////
 // GET route for getting all of the posts
 router.get("/api/trips", function(req, res) {
-    db.Trip.findAll({})
+    db.trip.findAll({})
       .then(function(dbPost) {
         res.json(dbPost);
       });
@@ -147,10 +148,6 @@ router.get("/api/trips", function(req, res) {
 
 //trip create statement
 router.post("/api/trips", function (req, res) {
-    console.log(req)
-    console.log('BREAKBREAKBREAKBREAKBREAKBREAKBREAKBREAKBREAKBREAK')
-    console.log(req.body)
-    console.log( 'THIS IS RANDOM AS HELL')
     const {
         tripname,
         totalbudget,
@@ -158,25 +155,21 @@ router.post("/api/trips", function (req, res) {
         departing,
         returning
     } = req.body;
-
-    console.log('THese are the trips' + req.body)
-    console.log(req.body)
+    console.log('THIS IS THE CONSOLE')
+    console.log(req.user.id); 
     db.trip.create({
         tripname: tripname,
         totalbudget: totalbudget,
         destination: destination,
         departing: departing,
-        returning: returning 
+        returning: returning,
+         /////////insert foriegn key of user id here 
         }).then(function (data) {
-            // We have access to the new todo as an argument inside of the callback function
-            
+        
             res.json(data);
-            
         })
         .catch(function (err) {
-            // Whenever a validation or flag fails, an error is thrown
-            // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-            
+        
             res.json(err);
         });
 });
