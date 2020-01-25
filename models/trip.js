@@ -36,6 +36,14 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     });
+    Trip.associate = function(models) {
+      // We're saying that a Post should belong to an Author
+      Trip.hasOne(models.User, {
+       
+    });
+
+  }
+
     return Trip;
   };
   
