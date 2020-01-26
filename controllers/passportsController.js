@@ -143,7 +143,12 @@ router.get('/contact', function (req, res, next) {
 ////////////////////////////////////////////////////////////////////////
 // GET route for getting all of the posts
 router.get("/api/trips", function(req, res) {
-    db.trip.findAll({})
+    const userID = req.user.id
+    db.Trip.findAll({
+        where: {
+            user_id: userID
+        }
+    })
       .then(function(dbPost) {
         res.json(dbPost);
       });
@@ -161,7 +166,7 @@ router.post("/api/trips", function (req, res) {
     const userID = req.user.id
     console.log('THIS IS THE CONSOLE')
     console.log(req.user.id); 
-    db.trip.create({
+    db.Trip.create({
         tripname: tripname,
         totalbudget: totalbudget,
         destination: destination,
@@ -186,6 +191,17 @@ router.get('/mytrips', function (req, res, next) {
         title: 'My Trips'
     });
 });
+
+router.get("/api/trips/:id", function(req, res) {
+  
+    db.Trip.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbAuthor) {
+      res.json(dbAuthor);
+    });
+  });
 
 
 

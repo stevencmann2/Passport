@@ -48,7 +48,7 @@ function addTableRows(trips){
        let tripDate = moment(trips[i].departing)
      tableBody.append(`
      <tr>
-      <td>${trips[i].tripname}</td>
+      <td><a href='/api/trips/${trips[i].id}'>${trips[i].tripname}</a></td>
       <td>${trips[i].destination}</td>
       <td>${tripDate.diff(now, 'days')}</td>
     </tr>
