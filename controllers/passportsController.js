@@ -200,10 +200,41 @@ router.post("/api/trips", function (req, res) {
 
 /* GET MYTRIPS . */
 router.get('/mytrips', function (req, res, next) {
-    res.render('myTrips', {
-        title: 'My Trips'
+
+
+
+    //find all trips where user_ID (assigned to trips) is EQUAL to the user.id of the logged in user.
+    db.trip.findAll({
+        where: {
+            user_ID: req.user.id
+        }
+        //NEED REQ.USER.ID TO WORK
+    }).then(function(response){
+        //NEED TO TEST THIS OUT TO MAKE SURE IT DISPLAYS ALLLL DESTINATIONS/ETC. HAVE TO LOOK AT THE JSON FILE.
+        res.render('myTrips', {
+            title: response.trip_name,
+            budget: response.total_budget,
+            destination: response.destination,
+            departing: response.departing
+
+
+        })
+
+
     });
+
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
