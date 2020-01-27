@@ -203,15 +203,21 @@ router.get("/api/trips/:id", function (req, res) {
     });
 });
 
-router.get('/tripDash:id', function (req, res, next) {
+router.get('/tripDash/:id', function (req, res, next) {
+        console.log(req);
+        console.log(req.params.id);
     db.Trip.findOne({
         where: {
-            id: req.params.id
+            tripid: req.params.id
         }
-    }).then(function (dbAuthor) {
-        res.render('tripDash', {
-            title: 'Dashboard'
-        });
+        
+    }).then(function (dbTrip) {
+        // res.render('tripDash', {
+        //     title: 'Dashboard'
+        // });
+        // console.log(res.json)
+        res.json(dbTrip);
+
     });
 });
 
