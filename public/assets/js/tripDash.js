@@ -79,10 +79,7 @@ function userTripSubmit(event){
 let BBdata = {
     description: tripName.val().trim(),
     amountDesired: parseInt(totalBudget.val().trim()),
-    : destination.val().trim(),
-    departing: departing.val(),
-    returning: returning.val()
-
+    
 }
 
 
@@ -101,4 +98,6 @@ $.ajax("/api/budgetbreakdown", {
     window.location.reload();
   }
 );
-}
+};
+
+
