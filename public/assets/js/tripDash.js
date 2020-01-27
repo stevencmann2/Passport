@@ -53,6 +53,18 @@ $("#budgetTrackerModal").modal('show');
     event.preventDefault();
 $("#ExpensesModal").modal('show');
  });
+
+// THIS IS FOR THE SELF ADDING FORM FUNCTION CREDIT TO @CODETUBE
+ $(".form-group").on('input', '.prc', function(){
+    var totalSum=0;
+    $(".form-group .prc").each(function(){
+      var inputVal=$(this).val();
+      if ($.isNumeric(inputVal)){
+          totalSum += parseFloat(inputVal);
+      }
+      });
+      $('#result').val(totalSum)
+    });
 // function selectTrip(tripId){
 
 
