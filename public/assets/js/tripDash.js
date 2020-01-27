@@ -1,7 +1,9 @@
-var url = window.location.search;
+var url = window.location.pathname;
+console.log(url)
   var tripId;
-  if (url.indexOf("?author_id=") !== -1) {
-    tripId = url.split("=")[1];
+  if (url.indexOf("/") !== -1) {
+    tripId = url.split("/")[2];
+    console.log(tripId+ "this is the trip Id with my javascript")
     getBudgetBreakdown(tripId);
   }
   // If there's no authorId we just get all posts as usual
@@ -13,6 +15,7 @@ var url = window.location.search;
   // This function grabs posts from the database and updates the view
   function getBudgetBreakdown(trip) {
     tripId = trip || "";
+    console.log(tripId+" inside the get BudgetBrakdownFunction")
     if (tripId) {
       tripId = "/?trip_id=" + tripId;
     }
@@ -40,7 +43,26 @@ var url = window.location.search;
  $("#budgetManager").click(function () {
     event.preventDefault();
 $("#budgetManagerModal").modal('show');
+
+
+///////// get route for trip budget??????????????
+function showOverallBudgetModal() {
+    $.get(`/api/trips/${tripId}`, function(data) {
+        console.log(tripId+ ' inside the show overall')
+    //   var rowsToAdd = [];
+    //   for (var i = 0; i < data.length; i++) {
+    //     rowsToAdd.push(createAuthorRow(data[i]));
+    //   }
+    //   renderAuthorList(rowsToAdd);
+    //   nameInput.val("");
+    });
+  }
+
+
+
  });
+
+ showOverallBudgetModal();
 
 ///// BUDGET tracker MODAL SHOW
  $("#budgetTracker").click(function () {
