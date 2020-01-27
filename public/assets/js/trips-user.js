@@ -39,7 +39,8 @@ function addTableRows(trips){
    
     
     
-
+//  <td><a href='/api/trips/${trips[i].id}'>${trips[i].tripname}</a></td> //
+// /mytrips/${trips[i].id}'>${trips[i].tripname}</a></td>
   // ROUTING TO THE TRIPNAME = (ROUTE)
   // MOMENT TILL IN THE RETURNING
     console.log(trips + "TRIPS LATER")
@@ -48,14 +49,13 @@ function addTableRows(trips){
        let tripDate = moment(trips[i].departing)
      tableBody.append(`
      <tr>
-      <td><a href='/api/trips/${trips[i].id}'>${trips[i].tripname}</a></td>
+      <td><a href='/tripDash:${trips[i].id}'>${trips[i].tripname}</a></td>
       <td>${trips[i].destination}</td>
       <td>${tripDate.diff(now, 'days')}</td>
     </tr>
      `)
     }
     
-
 }
 
 

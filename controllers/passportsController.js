@@ -61,7 +61,7 @@ router.get('/user', secured(), function (req, res, next) {
     res.render('user', {
         title: 'Dashboard',
         userProfile: JSON.stringify(userProfile, null, 2)
-        
+
     });
 });
 
@@ -122,7 +122,7 @@ router.get('/logout', (req, res) => {
 
 /* GET contact page. */
 router.get('/contact', function (req, res, next) {
-    
+
     res.render('contact', {
         title: 'Contact our Team'
     });
@@ -142,17 +142,17 @@ router.get('/contact', function (req, res, next) {
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 // GET route for getting all of the posts
-router.get("/api/trips", function(req, res) {
+router.get("/api/trips", function (req, res) {
     const userID = req.user.id
     db.Trip.findAll({
-        where: {
-            user_id: userID
-        }
-    })
-      .then(function(dbPost) {
-        res.json(dbPost);
-      });
-  });
+            where: {
+                user_id: userID
+            }
+        })
+        .then(function (dbPost) {
+            res.json(dbPost);
+        });
+});
 
 //trip create statement
 router.post("/api/trips", function (req, res) {
@@ -165,21 +165,21 @@ router.post("/api/trips", function (req, res) {
     } = req.body;
     const userID = req.user.id
     console.log('THIS IS THE CONSOLE')
-    console.log(req.user.id); 
+    console.log(req.user.id);
     db.Trip.create({
-        tripname: tripname,
-        totalbudget: totalbudget,
-        destination: destination,
-        departing: departing,
-        returning: returning,
-        user_id: userID
-         /////////insert foriegn key of user id here 
+            tripname: tripname,
+            totalbudget: totalbudget,
+            destination: destination,
+            departing: departing,
+            returning: returning,
+            user_id: userID
+            /////////insert foriegn key of user id here 
         }).then(function (data) {
-        
+
             res.json(data);
         })
         .catch(function (err) {
-        
+
             res.json(err);
         });
 });
@@ -192,16 +192,33 @@ router.get('/mytrips', function (req, res, next) {
     });
 });
 
-router.get("/api/trips/:id", function(req, res) {
-  
+router.get("/api/trips/:id", function (req, res) {
+
     db.Trip.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbAuthor) {
-      res.json(dbAuthor);
+        where: {
+            id: req.params.id
+        }
+    }).then(function (dbAuthor) {
+        res.json(dbAuthor);
     });
-  });
+});
+
+router.get('/tripDash:id', function (req, res, next) {
+    db.Trip.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (dbAuthor) {
+        res.render('tripDash', {
+            title: 'Dashboard'
+        });
+    });
+});
+
+
+
+
+
 
 
 

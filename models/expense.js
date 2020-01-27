@@ -12,13 +12,6 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1, 200]
             }
         },
-        categoryType: {
-            type: DataTypes.STRING, // the type of category will be predefined using front end JS
-            allowNull: false,
-            validate: {
-                len: [1, 100]
-            }
-        },
         user_id: {
             type: DataTypes.STRING,
             allowNull: false,
