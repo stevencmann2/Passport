@@ -211,7 +211,7 @@ router.get("/api/trips/:id", function (req, res) {
 // });
 
 router.get('/tripDash/:id', function (req, res, next) {
-    console.log(req.user)
+   
 
     db.Trip.findOne({
         where: {
