@@ -151,5 +151,14 @@ db.sequelize.sync({ force: false }).then(function() {
   });
 });
 
+// process.exit();
+  
+
+
+
+
+
+
+
 
 // module.exports = app;

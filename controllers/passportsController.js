@@ -197,12 +197,13 @@ router.post("/api/trips", function (req, res) {
         });
 });
 
-
+let cUserID;
+let cTripID;
 /* GET MYTRIPS . */
 router.get('/mytrips', function (req, res, next) {
 
 
-
+    cUserID = req.user.id;
     //find all trips where user_ID (assigned to trips) is EQUAL to the user.id of the logged in user.
     db.trip.findAll({
         where: {
@@ -210,18 +211,43 @@ router.get('/mytrips', function (req, res, next) {
         }
         //NEED REQ.USER.ID TO WORK
     }).then(function(response){
+        console.log(response);
+        cTripID = response.trip_ID;
         //NEED TO TEST THIS OUT TO MAKE SURE IT DISPLAYS ALLLL DESTINATIONS/ETC. HAVE TO LOOK AT THE JSON FILE.
         res.render('myTrips', {
             title: response.trip_name,
             budget: response.total_budget,
             destination: response.destination,
-            departing: response.departing
+            departing: response.departing,
+            trip_ID: response.trip_ID
 
-
-        })
+        });
 
 
     });
+
+});
+//SELECTED TRIP SPECIFICS
+router.get('/mytrips/:ctrip_ID?', function (req, res, next) {
+    db.budgetcategory.find({
+        where: {
+            trip_ID: cTripID
+        }
+        
+    }).then( function(response){
+        res.render('tripspecific', {
+            airfare: response.airfare,
+            transportation: response.transportation,
+            food: response.food,
+            lodging: response.lodging,
+            activities: response.activities,
+            misc_Other: response.misc_Other,
+            emergency: response.emergency
+
+
+        })
+    })
+
 
 });
 

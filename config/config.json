@@ -2,11 +2,7 @@
     "development": {
       "username": "root",
       "password": "root",
-<<<<<<< HEAD
       "database": "base",
-=======
-      "database": "passport",
->>>>>>> 4580c54ba1ce0d1cb2fb61b010fd7a3af6aa8689
       "host": "localhost",
       "port": 3306,
       "dialect": "mysql"

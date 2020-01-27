@@ -1,4 +1,4 @@
-
+-- DROP DATABASE IF EXISTS base;
 CREATE DATABASE base;
 USE base;
 
@@ -39,7 +39,8 @@ CREATE TABLE budgetcategory(
     lodging VARCHAR(100),
     activities VARCHAR(100),
     misc_Other VARCHAR(100),
-    emergency VARCHAR(100)
+    emergency VARCHAR(100),
+    trip_ID VARCHAR(30)
     
 
 

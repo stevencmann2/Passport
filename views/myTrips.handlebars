@@ -20,10 +20,13 @@
     <table class="table table-borderless mytrips-container">
         <thead>
             <tr>
-            <th scope="col">Trip Name</th>
-             <th scope="col">Destination</th>
-             <th scope="col">Days Until</th>
-             </tr>
+                <th scope="col">Trip Name</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Days Until</th>
+            </tr>
+            {{#each response}}
+                <td>{{trip_name}}</td>
+            {{/each}}
         </thead>
         <tbody id="tablebody">
   </tbody>
