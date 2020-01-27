@@ -211,8 +211,8 @@ router.get("/api/trips/:id", function (req, res) {
 // });
 
 router.get('/tripDash/:id', function (req, res, next) {
-    console.log(req);
-    console.log(req.params.id);
+    console.log(req.user)
+
     db.Trip.findOne({
         where: {
             id: req.params.id
@@ -222,16 +222,9 @@ router.get('/tripDash/:id', function (req, res, next) {
         res.render('tripDash', {
             title: 'Dashboard'
         });
-        // console.log(res.json)
-        // console.log(dbTrip)
-        // res.json(dbTrip);
 
     });
 });
-
-
-
-
 
 router.get("/api/budgetbreakdown", function (req, res) {
     var query = {};
@@ -246,10 +239,19 @@ router.get("/api/budgetbreakdown", function (req, res) {
     });
 });
 
+  // POST route for saving a new post
+//   router.post("/api/budgetbreakdown", function(req, res) {
+//     db.BudgetBreakdown.create({
+        
+//     }).then(function (data) {
 
+//         res.json(data);
+//     })
+//     .catch(function (err) {
 
-
-
+//         res.json(err);
+//     });
+// });
 
 
 

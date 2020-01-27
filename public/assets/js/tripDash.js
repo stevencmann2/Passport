@@ -1,3 +1,5 @@
+
+const breakdownForm=$('#breakdownform') 
 var url = window.location.pathname;
 console.log(url)
   var tripId;
@@ -12,7 +14,7 @@ console.log(url)
   }
 
 
-  // This function grabs posts from the database and updates the view
+  // This function grabs posts from the BB database and updates the view
   function getBudgetBreakdown(trip) {
     tripId = trip || "";
     console.log(tripId+" inside the get BudgetBrakdownFunction")
@@ -32,37 +34,15 @@ console.log(url)
       }
     });
   }
- 
-
-
-
-
 
  ///// BUDGET MANAGER MODAL SHOW
  
  $("#budgetManager").click(function () {
     event.preventDefault();
 $("#budgetManagerModal").modal('show');
-
-
-///////// get route for trip budget??????????????
-function showOverallBudgetModal() {
-    $.get(`/api/trips/${tripId}`, function(data) {
-        console.log(tripId+ ' inside the show overall')
-    //   var rowsToAdd = [];
-    //   for (var i = 0; i < data.length; i++) {
-    //     rowsToAdd.push(createAuthorRow(data[i]));
-    //   }
-    //   renderAuthorList(rowsToAdd);
-    //   nameInput.val("");
-    });
-  }
-
-
-
  });
 
- showOverallBudgetModal();
+
 
 ///// BUDGET tracker MODAL SHOW
  $("#budgetTracker").click(function () {
@@ -87,23 +67,38 @@ $("#ExpensesModal").modal('show');
       });
       $('#result').val(totalSum)
     });
-// function selectTrip(tripId){
+
+// THIS IS FOR POSTING TO THE BUDGET BREAKDOWN 
+$(breakdownForm).on("submit", budgetBreakdownSubmit);
+
+///// HANDLES FORM SUBMIT CLICK
+function userTripSubmit(event){
+    event.preventDefault();
+
+///// FORMATED NOW AS yyyy-MM-dd
+let BBdata = {
+    description: tripName.val().trim(),
+    amountDesired: parseInt(totalBudget.val().trim()),
+    : destination.val().trim(),
+    departing: departing.val(),
+    returning: returning.val()
+
+}
 
 
 
+// Send the POST request.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$.ajax("/api/budgetbreakdown", {
+  
+  type: "POST",
+  data: BBdata
+  
+}).then(
+  function() {
+    console.log("added new budgetdata");
+    // Reload the page to get the updated list
+    window.location.reload();
+  }
+);
+}

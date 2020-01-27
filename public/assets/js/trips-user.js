@@ -9,15 +9,15 @@ tableBody= $("#tablebody")
 function getTrips(){
 
     $.get("/api/trips" , function(data) {
-        console.log("Trips", data);
+        // console.log("Trips", data);
          const trips = data
-         console.log(data)
-         console.log(trips + 'TRIPS AS DATA')
+        //  console.log(data)
+        //  console.log(trips + 'TRIPS AS DATA')
         if (!trips || !trips.length) {
             displayNoTrips();
           }
           else {
-            console.log('THere are trips');
+            // console.log('THere are trips');
             addTableRows(trips);
           }
         
@@ -43,7 +43,7 @@ function addTableRows(trips){
 // /mytrips/${trips[i].id}'>${trips[i].tripname}</a></td>
   // ROUTING TO THE TRIPNAME = (ROUTE)
   // MOMENT TILL IN THE RETURNING
-    console.log(trips + "TRIPS LATER")
+    // console.log(trips + "TRIPS LATER")
     for (let i = 0; i < trips.length; i++) {
         let now = moment();
        let tripDate = moment(trips[i].departing)
