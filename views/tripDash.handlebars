@@ -1,5 +1,6 @@
   <div class="container">
 
+<!--Budget Manager Card -->
     <div class="card">
         <div class="card-header">
           Your Budget Manager
@@ -8,9 +9,11 @@
           <h5 class="card-title">Your Budget </h5>
           <p class="card-text">THIS IS WHERE THE USER WILL DEFINE HOW MUCH MONEY THEY WANT TO SPEND
               BY CATEGORY AND WELL DISPLAY A CHART WITH THEIR BUDGET GOALS</p>
-          <a href="#" class="btn btn-primary">View Budget Manager</a>
+              <button type="submit" class="btn btn-success btn-block btn-lg mb-4" id="budgetManager">View Budget Manager</button>
         </div>
       </div>
+
+<!--Budget Tracker Card -->
       <div class="card">
         <div class="card-header">
           BUDGET BREAKDOWN 
@@ -20,10 +23,11 @@
           <p class="card-text">THIS IS WHERE WE WILL SHOW THEIR TOAL EXPENSES AS RELATED TO THEIR BUDGET
               IT WILL SHOW THEIR EXPENSES BY CATEGORY AND BY THEIR SET BUDGET GOALS
           </p>
-          <a href="#" class="btn btn-primary">OPTIONAL BUTTON MAYBE DISPLAY DIFFERENT CHART</a>
+          <button type="submit" class="btn btn-success btn-block btn-lg mb-4" id="budgetTracker">Track Budget</button>
         </div>
-  </div>
-
+        </div>
+  
+<!--Expenses -->
       <div class="card">
         <div class="card-header">
           Expenses
@@ -31,8 +35,114 @@
         <div class="card-body">
           <h5 class="card-title">Your Expenses</h5>
           <p class="card-text">THIS IS WHERE WE WILL LIST EXPENSES AND LET THEM ADD EXPENSES</p>
-          <a href="#" class="btn btn-primary">ADD AN EXPENSE</a>
+            <button type="submit" class="btn btn-success btn-block btn-lg mb-4" id="addExpense">Add Expense</button>
         </div>
       
 
     </div>
+
+
+    <!--Budget Manager Modal -->
+    <div id="budgetManagerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title"><strong>Budget Manager</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    
+                    
+
+                    
+
+                </div>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" >Save</button>
+
+                    </button> 
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <!--Budget Tracker Modal -->
+    <div id="budgetTrackerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title"><strong>Budget Tracker</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    
+                    
+
+                    
+
+                </div>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" >Save</button>
+
+                    </button> 
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+ <!--Expenses Modal -->
+    <div id="ExpensesModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title"><strong>Your Expenses</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    
+                    
+
+                    
+
+                </div>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" >Save</button>
+
+                    </button> 
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    </div>
+
+     

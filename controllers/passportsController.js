@@ -203,31 +203,49 @@ router.get("/api/trips/:id", function (req, res) {
     });
 });
 
-/* GET MYTRIPS . */
-router.get('/tripDash', function (req, res, next) {
-    res.render('tripDash', {
-            title: 'Dashboard'
-        });
-});
+
+// router.get('/tripDash', function (req, res, next) {
+//     res.render('tripDash', {
+//             title: 'Dashboard'
+//         });
+// });
 
 router.get('/tripDash/:id', function (req, res, next) {
-        console.log(req);
-        console.log(req.params.id);
+    console.log(req);
+    console.log(req.params.id);
     db.Trip.findOne({
         where: {
             id: req.params.id
         }
-        
+
     }).then(function (dbTrip) {
-        // res.render('tripDash', {
-        //     title: 'Dashboard'
-        // });
+        res.render('tripDash', {
+            title: 'Dashboard'
+        });
         // console.log(res.json)
-        console.log(dbTrip)
-        res.json(dbTrip);
+        // console.log(dbTrip)
+        // res.json(dbTrip);
 
     });
 });
+
+
+
+
+
+router.get("/api/budgetbreakdown", function (req, res) {
+    var query = {};
+    if (req.query.trip_id) {
+        query.TripId = req.query.trip_id;
+    }
+    db.BudgetBreakdown.findAll({
+        where: query,
+        include: [db.Trip]
+    }).then(function (dbBB) {
+        res.json(dbBB);
+    });
+});
+
 
 
 

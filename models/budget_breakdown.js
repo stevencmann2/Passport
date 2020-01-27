@@ -23,6 +23,11 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false
               }
       });
+      BudgetBreakdown.belongsTo(models.Trip, {
+        foreignKey: {
+            allowNull: false
+          }
+  });
     }
     return BudgetBreakdown;
   }
