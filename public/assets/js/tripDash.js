@@ -71,6 +71,26 @@ $("#ExpensesModal").modal('show');
 // THIS IS FOR POSTING TO THE BUDGET BREAKDOWN 
 $(breakdownForm).on("submit", budgetBreakdownSubmit);
 
+
+
+
+$("#budgetManageSave").on("click", "button", function(event) {
+  event.preventDefault();
+  event.stopImmediatePropagation()
+  console.log(`CLICKED`);
+  let array = [];
+  
+  array = [airfare.val(), transportation.val(), lodging.val(),
+     food.val(), activities.val(), emergency.val(), misc.val()];
+
+  console.log(array);
+
+
+});
+
+
+
+
 ///// HANDLES FORM SUBMIT CLICK
 function userTripSubmit(event){
     event.preventDefault();

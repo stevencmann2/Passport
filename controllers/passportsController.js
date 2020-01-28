@@ -236,8 +236,33 @@ router.get("/api/budgetbreakdown", function (req, res) {
         include: [db.Trip]
     }).then(function (dbBB) {
         res.json(dbBB);
+        
     });
 });
+
+// router.post("tripDash/:id/budgetbreakdown/", function( req, res){
+//     let array = [];
+
+
+//     for (i = 0; i < array.length; i ++){
+
+//         db.BudgetBreakdown.create({
+//             description: array[i],
+
+//             amountDesired:
+//         })
+
+
+
+
+//     }
+
+
+// });
+
+
+
+
 
   // POST route for saving a new post
 //   router.post("/api/budgetbreakdown", function(req, res) {
