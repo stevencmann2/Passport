@@ -13,11 +13,11 @@ const breakdownForm = $("#breakdownform");
  let emergencyBudget = $("#emergency");
  let miscBudget = $("#misc");
 ///// FORM THE BUDGET MANAGER 'BREAKDOWN' MODAL
-console.log(airfareBudget)
-console.log(typeof airfareBudget)
-airfareBudget = airfareBudget.val();
-console.log(airfareBudget)
-console.log(typeof airfareBudget)
+// console.log(airfareBudget)
+// console.log(typeof airfareBudget)
+// airfareBudget = airfareBudget.val();
+// console.log(airfareBudget)
+// console.log(typeof airfareBudget)
 // airfareBudget = airfareBudget.val();
 // transportationBudget = transportationBudget.val().trim();
 // lodgingBudget =lodgingBudget.val().trim();
@@ -26,9 +26,9 @@ console.log(typeof airfareBudget)
 // emergencyBudget = emergencyBudget.val().trim();
 // miscBudget = miscBudget.val().trim();
 
-console.log('these are the values')
-// console.log(airfareBudget);
-console.log(transportationBudget)
+// console.log('these are the values')
+// // console.log(airfareBudget);
+// console.log(transportationBudget)
 
 
 
@@ -43,35 +43,36 @@ console.log(url)
   var tripId;
   if (url.indexOf("/") !== -1) {
     tripId = url.split("/")[2];
-    console.log(tripId+ "this is the trip Id with my javascript")
+    // console.log(tripId+ "this is the trip Id with my javascript")
     // getBudgetBreakdown(tripId);
   }
-//   // If there's no authorId we just get all posts as usual
-//   else {
-//     getBudgetBreakdown();
-//   }
+  // If there's no authorId we just get all posts as usual
+  else {
+    // console.log(`there is no ${tripId}`);
+  }
 
 
-//   // This function grabs posts from the BB database and updates the view
-//   // function getBudgetBreakdown(trip) {
-//   //   tripId = trip || "";
-//   //   console.log(tripId+" inside the get BudgetBrakdownFunction")
-//   //   if (tripId) {
-//   //     tripId = "/?trip_id=" + tripId;
-//   //   }
-//   //   $.get("/api/budgetbreakdown" + tripId, function(data) {
-//   //     console.log("Budget", data);
-//   //    budgetbreakdown = data;
-//   //     if (!budgetbreakdown || !budgetbreakdown.length) {
-//   //       // displayEmpty(trip);
-//   //       console.log('no set budget constraints')
-//   //     }
-//   //     else {
-//   //       // initializeRows();
-//   //       console.log('budget constraints exist')
-//   //     }
-//   //   });
-//   // }
+  // This function grabs posts from the BB database and updates the view
+  // function getBudgetBreakdown(trip) {
+  //   tripId = trip || "";
+  //   // console.log(tripId+" inside the get BudgetBrakdownFunction")
+  //   if (tripId) {
+  //     tripId = "/?trip_id=" + tripId;
+  //   }
+  //   $.get("/api/budgetbreakdown" + tripId, function(data) {
+  //     console.log("Budget", data);
+  //    budgetbreakdown = data;
+  //     if (!budgetbreakdown || !budgetbreakdown.length) {
+  //       // displayEmpty(trip);
+  //       console.log(`no set budget constraints  for trip#${tripId}`)
+        
+  //     }
+  //     else {
+  //       // initializeRows();
+  //       console.log(`budget constraints exist for trip #${tripId}`)
+  //     }
+  //   });
+  // }
 
  ///// BUDGET MANAGER MODAL SHOW
  
@@ -117,7 +118,7 @@ function budgetBreakdownSubmit(event){
 const breakdownArray=[airfareBudget, transportationBudget, lodgingBudget, 
   foodBudget, activitiesBudget, emergencyBudget, miscBudget];
 
-  console.log(`breakdownArray is this ${breakdownArray}`)
+  // console.log(`breakdownArray is this ${breakdownArray}`)
   let dataArray = []
  for (let i=0; i<breakdownArray.length; i++){
    
@@ -129,12 +130,12 @@ const breakdownArray=[airfareBudget, transportationBudget, lodgingBudget,
     BudgetCategoryId: parseInt(i+1), 
     tripId: parseInt(tripId)   
 }
-console.log(BBdata);
+// console.log(BBdata);
 dataArray.push.BBdata
  }
 
 
-console.log(dataArray)
+// console.log(dataArray)
 
 // Send the POST request.
 
@@ -156,17 +157,28 @@ $.ajax("/api/budgetbreakdown", {
 
 /// ADDING AN EXPENSE
 // THIS IS FOR POSTING TO THE BUDGET BREAKDOWN 
-$(expenseForm).on("submit", addExpense);
+$(expenseForm).on("submit", expensetoDb);
 
-function addExpense(event){
+function expensetoDb(event){
   event.preventDefault();
-  const categorybtn = $("input[name='categorybutton']:checked").val().trim();
+  const BBid = $("input[name='categorybutton']:checked").val().trim();
+  const categoryname =$("input[type='radio']:checked").parent().next().find('label').text();
+
+  console.log(`${BBid} this is the category button`)
+    // burger_name: $("#addburger [name=burger]").val().trim(),
 
  let newExpense = {
    amount: parseInt(expenseAmount.val().trim()),
    description: expenseDescription.val().trim(),
-  categoryType: categorybtn
+  categoryType: categoryname,
+  BudgetBreakdownId: parseInt(BBid)
  }
+ console.log(newExpense.amount, typeof newExpense.amount)
+ console.log(newExpense.description, typeof newExpense.description)
+ console.log(newExpense.categoryType, typeof newExpense.categoryType)
+ console.log(newExpense.BudgetBreakdownId, typeof newExpense.BudgetBreakdownId)
+
+
 //  console.log(typeof newExpense.categorybtn)
 //  console.log(newExpense);
  $.ajax("/api/expenses", {
