@@ -161,8 +161,24 @@ $(expenseForm).on("submit", expensetoDb);
 
 function expensetoDb(event){
   event.preventDefault();
+  const categoryArray =["Airfare", "Transportation", "Lodging", "Food and Drink", "Activities", "Emergency", "Miscellaneous"]
   const BBid = $("input[name='categorybutton']:checked").val().trim();
-  const categoryname =$("input[type='radio']:checked").parent().next().find('label').text();
+  let categoryname=[];
+
+  for (i=0; i<categoryArray.length; i++){
+    if(i == BBid-1){
+      // let categoryname = categoryArray[i] 
+      // console.log(categoryname + ' categoryname')
+      categoryname.push(categoryArray[i])
+    }
+    // return categoryname
+  }
+  console.log(categoryname)
+  
+
+
+  // const categoryname =$("input[type='radio']:checked").parent().next().find('label').text();
+
 
   console.log(`${BBid} this is the category button`)
     // burger_name: $("#addburger [name=burger]").val().trim(),
@@ -170,7 +186,7 @@ function expensetoDb(event){
  let newExpense = {
    amount: parseInt(expenseAmount.val().trim()),
    description: expenseDescription.val().trim(),
-  categoryType: categoryname,
+  categoryType: categoryname.toString(),
   BudgetBreakdownId: parseInt(BBid)
  }
  console.log(newExpense.amount, typeof newExpense.amount)
@@ -178,6 +194,9 @@ function expensetoDb(event){
  console.log(newExpense.categoryType, typeof newExpense.categoryType)
  console.log(newExpense.BudgetBreakdownId, typeof newExpense.BudgetBreakdownId)
 
+ console.log(newExpense)
+
+ 
 
 //  console.log(typeof newExpense.categorybtn)
 //  console.log(newExpense);
