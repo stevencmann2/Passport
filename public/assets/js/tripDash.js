@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-const breakdownForm = $('#breakdownform');
+const breakdownForm = $("#breakdownform");
  const expenseForm = $("#expenseForm");
 
 
@@ -13,14 +13,22 @@ const breakdownForm = $('#breakdownform');
  let emergencyBudget = $("#emergency");
  let miscBudget = $("#misc");
 ///// FORM THE BUDGET MANAGER 'BREAKDOWN' MODAL
-airfareBudget = airfareBudget.val().trim();
-transportationBudget = transportationBudget.val().trim();
-lodgingBudget =lodgingBudget.val().trim();
-foodBudget = foodBudget.val().trim();
-activitiesBudget = activitiesBudget.val().trim();
-emergencyBudget = emergencyBudget.val().trim();
-miscBudget = miscBudget.val().trim();
+console.log(airfareBudget)
+console.log(typeof airfareBudget)
+airfareBudget = airfareBudget.val();
+console.log(airfareBudget)
+console.log(typeof airfareBudget)
+// airfareBudget = airfareBudget.val();
+// transportationBudget = transportationBudget.val().trim();
+// lodgingBudget =lodgingBudget.val().trim();
+// foodBudget = foodBudget.val().trim();
+// activitiesBudget = activitiesBudget.val().trim();
+// emergencyBudget = emergencyBudget.val().trim();
+// miscBudget = miscBudget.val().trim();
 
+console.log('these are the values')
+// console.log(airfareBudget);
+console.log(transportationBudget)
 
 
 
