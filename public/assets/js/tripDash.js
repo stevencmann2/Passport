@@ -3,7 +3,7 @@ $(document).ready(function() {
 const breakdownForm = $("#breakdownform");
  const expenseForm = $("#expenseForm");
 
-
+ expenseBody = $("#expenseBody")
  ///// FORM THE BUDGET MANAGER 'BREAKDOWN' MODAL
  let airfareBudget = $("#airfare");
  let transportationBudget = $("#transportation");
@@ -82,7 +82,6 @@ $("#budgetManagerModal").modal('show');
  });
 
 
-
 ///// BUDGET tracker MODAL SHOW
  $("#budgetTracker").click(function () {
     event.preventDefault();
@@ -122,8 +121,6 @@ const breakdownArray=[airfareBudget, transportationBudget, lodgingBudget,
   let dataArray = []
  for (let i=0; i<breakdownArray.length; i++){
    
-  
-
   let BBdata = {
     description: null,
     amountDesired: parseInt(breakdownArray[i]),
@@ -134,11 +131,7 @@ const breakdownArray=[airfareBudget, transportationBudget, lodgingBudget,
 dataArray.push.BBdata
  }
 
-
-// console.log(dataArray)
-
 // Send the POST request.
-
 $.ajax("/api/budgetbreakdown", {
   
   type: "POST",
@@ -167,17 +160,11 @@ function expensetoDb(event){
 
   for (i=0; i<categoryArray.length; i++){
     if(i == BBid-1){
-      // let categoryname = categoryArray[i] 
-      // console.log(categoryname + ' categoryname')
       categoryname.push(categoryArray[i])
-    }
-    // return categoryname
+    } 
   }
   console.log(categoryname)
   
-
-
-  // const categoryname =$("input[type='radio']:checked").parent().next().find('label').text();
 
 
   console.log(`${BBid} this is the category button`)
@@ -194,7 +181,7 @@ function expensetoDb(event){
  console.log(newExpense.categoryType, typeof newExpense.categoryType)
  console.log(newExpense.BudgetBreakdownId, typeof newExpense.BudgetBreakdownId)
 
- console.log(newExpense)
+ console.log(newExpense);
 
  
 
@@ -216,3 +203,30 @@ function expensetoDb(event){
 
 }
 });
+
+function getExpenses(){
+
+  $.get("/api/expenses" , function(data) {
+      // console.log("Trips", data);
+       const expenses = data
+      //  console.log(data)
+      //  console.log(trips + 'TRIPS AS DATA')
+      if (!expenses || !expenses.length) {
+          displayNoExpenses();
+        }
+        else {
+          // console.log('THere are trips');
+          console.log('there are expenses')
+        }
+      
+})
+};
+
+function displayNoExpenses(){
+  // tripsContainer.empty();
+  let H2 = $("<h2>");
+  H2.css({ "text-align": "center", "margin-top": "50px" });
+  H2.html("You dont appear to have any expenses at the moment, click the button below in order to add an expense to your planned trip.");
+  expenseBody.append(H2);
+}
+
