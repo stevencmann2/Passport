@@ -1,0 +1,230 @@
+  <div class="container">
+
+<!--Budget Manager Card -->
+    <div class="card">
+        <div class="card-header">
+          Your Budget Manager
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Your Budget </h5>
+          <p class="card-text">THIS IS WHERE THE USER WILL DEFINE HOW MUCH MONEY THEY WANT TO SPEND
+              BY CATEGORY AND WELL DISPLAY A CHART WITH THEIR BUDGET GOALS</p>
+              <button type="submit" class="btn btn-success btn-block btn-lg mb-4" id="budgetManager">View Budget Manager</button>
+        </div>
+      </div>
+
+<!--Budget Tracker Card -->
+      <div class="card">
+        <div class="card-header">
+          BUDGET BREAKDOWN 
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">TRACK YOUR BUDGET</h5>
+          <p class="card-text">THIS IS WHERE WE WILL SHOW THEIR TOAL EXPENSES AS RELATED TO THEIR BUDGET
+              IT WILL SHOW THEIR EXPENSES BY CATEGORY AND BY THEIR SET BUDGET GOALS
+          </p>
+          <button type="submit" class="btn btn-success btn-block btn-lg mb-4" id="budgetTracker">Track Budget</button>
+        </div>
+        </div>
+  
+<!--Expenses -->
+      <div class="card">
+        <div class="card-header">
+          Expenses
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Your Expenses</h5>
+          <p class="card-text">THIS IS WHERE WE WILL LIST EXPENSES AND LET THEM ADD EXPENSES</p>
+            <button type="submit" class="btn btn-success btn-block btn-lg mb-4" id="addExpense">Add Expense</button>
+        </div>
+      
+
+    </div>
+
+
+    <!--Budget Manager Modal -->
+    <div id="budgetManagerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title"><strong>Budget Manager</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="breakdownform">
+              <fieldset>
+                <legend>Desired Budget by Category:</legend>
+              
+
+                <div class="form-group">
+                  <label>Airfare</label>
+                  <input type="number" class="form-control prc" id="airfare">
+                </div>
+                <div class="form-group">
+                  <label>Transportation</label>
+                  <input type="number" class="form-control prc" id="transportation">
+                </div>
+                <div class="form-group">
+                  <label>Lodging</label>
+                  <input type="number" class="form-control prc"id="lodging">
+                </div>
+                <div class="form-group">
+                  <label>Food and Drink</label>
+                  <input type="number" class="form-control prc" id="food">
+                </div>
+                <div class="form-group">
+                  <label>Activities</label>
+                  <input type="number" class="form-control prc" id="activities">
+                </div>
+                <div class="form-group">
+                  <label>Emergency</label>
+                  <input type="number" class="form-control prc"id="emergency">
+                </div>
+                <div class="form-group">
+                  <label>Miscellaneous</label>
+                  <input type="number" class="form-control prc" id="misc">
+                </div>
+
+                
+                <div class="form-group">
+                  <label>Total: </label>
+                  <output type="number" id="result"></output>
+                </div>
+                <div class="form-group">
+                  <h4>Total Budget ($):</h4>
+                </div>
+              
+              
+
+               
+
+                </div>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="budgetManageSave">Save Budget</button>
+
+                    </button> 
+
+                </div>
+                  </fieldset>
+              </form>
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <!--Budget Tracker Modal -->
+    <div id="budgetTrackerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title"><strong>Budget Tracker</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    
+                    
+
+                    
+
+                </div>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" >Save</button>
+
+                    </button> 
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+ <!--Expenses Modal -->
+    <div id="ExpensesModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title"><strong>Your Expenses</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+
+                <div class="modal-body">
+ <form id="expenseForm">
+  <div class="form-group">
+    <label for="expenseamount">Amount ($)</label>
+    <input type="text" class="form-control" id="expenseamount" placeholder="Dollar Amont">
+  </div>
+  <div class="form-group">
+    <label for="expensedescription">Description</label>
+    <input type="text" class="form-control" id="expensedescription" placeholder="i.e. Uber Ride">
+  </div>
+    <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Airfare">
+                    <label class="form-check-label" for="Radio1">Airfare</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Transportation">
+                    <label class="form-check-label" for="Radio2">Transportation</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Lodging">
+                    <label class="form-check-label" for="Radio3">Lodging</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Food and Drink">
+                    <label class="form-check-label" for="Radio4">Food and Drink</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Activities">
+                    <label class="form-check-label" for="Radio5">Activities</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Emergency">
+                    <label class="form-check-label" for="Radio6">Emergency</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Miscellaneous">
+                    <label class="form-check-label" for="Radio7">Misc.</label>
+                </div>
+  <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="addExpense">Save</button>
+
+                    </button> 
+
+                </div>
+
+</form>
+            </div>
+
+        </div>
+    </div>
+
+
+    </div>
+
+     
+
+     </div>

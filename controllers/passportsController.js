@@ -61,7 +61,7 @@ router.get('/user', secured(), function (req, res, next) {
     res.render('user', {
         title: 'Dashboard',
         userProfile: JSON.stringify(userProfile, null, 2)
-        
+
     });
 });
 
@@ -122,7 +122,7 @@ router.get('/logout', (req, res) => {
 
 /* GET contact page. */
 router.get('/contact', function (req, res, next) {
-    
+
     res.render('contact', {
         title: 'Contact our Team'
     });
@@ -142,12 +142,17 @@ router.get('/contact', function (req, res, next) {
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 // GET route for getting all of the posts
-router.get("/api/trips", function(req, res) {
-    db.trip.findAll({})
-      .then(function(dbPost) {
-        res.json(dbPost);
-      });
-  });
+router.get("/api/trips", function (req, res) {
+    const userID = req.user.id
+    db.Trip.findAll({
+            where: {
+                user_id: userID
+            }
+        })
+        .then(function (dbPost) {
+            res.json(dbPost);
+        });
+});
 
 //trip create statement
 router.post("/api/trips", function (req, res) {
@@ -160,21 +165,21 @@ router.post("/api/trips", function (req, res) {
     } = req.body;
     const userID = req.user.id
     console.log('THIS IS THE CONSOLE')
-    console.log(req.user.id); 
-    db.trip.create({
-        tripname: tripname,
-        totalbudget: totalbudget,
-        destination: destination,
-        departing: departing,
-        returning: returning,
-        user_id: userID
-         /////////insert foriegn key of user id here 
+    console.log(req.user.id);
+    db.Trip.create({
+            tripname: tripname,
+            totalbudget: totalbudget,
+            destination: destination,
+            departing: departing,
+            returning: returning,
+            user_id: userID
+            /////////insert foriegn key of user id here 
         }).then(function (data) {
-        
+
             res.json(data);
         })
         .catch(function (err) {
-        
+
             res.json(err);
         });
 });
@@ -187,6 +192,116 @@ router.get('/mytrips', function (req, res, next) {
     });
 });
 
+router.get("/api/trips/:id", function (req, res) {
+
+    db.Trip.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (dbAuthor) {
+        res.json(dbAuthor);
+    });
+});
+
+
+// router.get('/tripDash', function (req, res, next) {
+//     res.render('tripDash', {
+//             title: 'Dashboard'
+//         });
+// });
+
+router.get('/tripDash/:id', function (req, res, next) {
+   
+
+    db.Trip.findOne({
+        where: {
+            id: req.params.id
+        }
+
+    }).then(function (dbTrip) {
+        res.render('tripDash', {
+            title: 'Dashboard'
+        });
+
+    });
+});
+
+// router.get("/api/budgetbreakdown", function (req, res) {
+//     var query = {};
+//     if (req.query.trip_id) {
+//         query.TripId = req.query.trip_id;
+//     }
+//     db.BudgetBreakdown.findAll({
+//         where: query,
+//         include: [db.Trip]
+//     }).then(function (dbBB) {
+//         res.json(dbBB);
+//     });
+// });
+
+//   POST route for saving a new post
+  router.post("/api/budgetbreakdown", function(req, res) {
+    const {
+        description,
+        amountDesired, 
+        BudgetCategoryId,
+        tripId
+    }=req.body
+    db.BudgetBreakdown.create({
+            description: description,
+            amountDesired: amountDesired,
+            BudgetCategoryId: BudgetCategoryId,
+            tripId: tripId,
+            
+
+        
+    }).then(function (data) {
+
+        res.json(data);
+    })
+    .catch(function (err) {
+
+        res.json(err);
+    });
+});
+
+
+router.get("/api/expenses", function (req, res) {
+    const userID = req.user.id
+    db.Expense.findAll({
+            where: {
+                user_id: userID
+            }
+        })
+        .then(function (dbExpense) {
+            res.json(dbExpense);
+        });
+});
+
+router.post("/api/expenses", function (req, res) {
+    const {
+        amount, 
+        description, 
+        categoryType
+    } = req.body;
+    const userID = req.user.id
+    console.log('THIS IS THE CONSOLE')
+    console.log(req.user.id);
+    db.Expense.create({
+            amount: amount,
+            description: description,
+            categoryType: categoryType,
+            user_id: userID
+            /////////insert foriegn key of user id here 
+        }).then(function (data) {
+
+            res.json(data);
+        })
+        .catch(function (err) {
+
+            res.json(err);
+        });
+});
 
 
 module.exports = router;
