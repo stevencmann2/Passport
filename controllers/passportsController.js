@@ -287,6 +287,7 @@ router.post("/api/expenses", function (req, res) {
         BudgetBreakdownId
     } = req.body;
     console.log('this is the req.body'+ req.body)
+    console.log(req.body)
     const userID = req.user.id
     console.log('THIS IS THE CONSOLE')
     console.log(req.user.id);
