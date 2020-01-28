@@ -55,36 +55,38 @@
                 </div>
 
                 <div class="modal-body">
-              <form id="breakdownform">
+                    <form id="breakdownform">
               <fieldset>
                 <legend>Desired Budget by Category:</legend>
+              
+
                 <div class="form-group">
                   <label>Airfare</label>
-                  <input type="number" class="form-control prc" id="airfare"/>
+                  <input type="number" class="form-control prc" id="airfare">
                 </div>
                 <div class="form-group">
                   <label>Transportation</label>
-                  <input type="number" class="form-control prc" id="transportation"/>
+                  <input type="number" class="form-control prc" id="transportation">
                 </div>
                 <div class="form-group">
                   <label>Lodging</label>
-                  <input type="number" class="form-control prc"id="lodging"/>
+                  <input type="number" class="form-control prc"id="lodging">
                 </div>
                 <div class="form-group">
                   <label>Food and Drink</label>
-                  <input type="number" class="form-control prc" id="food"/>
+                  <input type="number" class="form-control prc" id="food">
                 </div>
                 <div class="form-group">
                   <label>Activities</label>
-                  <input type="number" class="form-control prc" id="activities"/>
+                  <input type="number" class="form-control prc" id="activities">
                 </div>
                 <div class="form-group">
                   <label>Emergency</label>
-                  <input type="number" class="form-control prc"id="emergency"/>
+                  <input type="number" class="form-control prc"id="emergency">
                 </div>
                 <div class="form-group">
                   <label>Miscellaneous</label>
-                  <input type="number" class="form-control prc" id="misc"/>
+                  <input type="number" class="form-control prc" id="misc">
                 </div>
 
                 
@@ -98,18 +100,23 @@
               
               
 
-                    
+               
 
                 </div>
                 <div class="modal-footer">
                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="budgetManageSave">Save Budget</button>
+                    <button type="submit" class="btn btn-primary" id="budgetManageSave">Save Budget</button>
 
                     </button> 
 
                 </div>
                   </fieldset>
               </form>
+
+
+
+
+
             </div>
 
         </div>
@@ -164,20 +171,52 @@
                 </div>
 
                 <div class="modal-body">
-                    
-                    
-
-                    
-
+ <form id="expenseForm">
+  <div class="form-group">
+    <label for="expenseamount">Amount ($)</label>
+    <input type="text" class="form-control" id="expenseamount" placeholder="Dollar Amont">
+  </div>
+  <div class="form-group">
+    <label for="expensedescription">Description</label>
+    <input type="text" class="form-control" id="expensedescription" placeholder="i.e. Uber Ride">
+  </div>
+    <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Airfare">
+                    <label class="form-check-label" for="Radio1">Airfare</label>
                 </div>
-                <div class="modal-footer">
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Transportation">
+                    <label class="form-check-label" for="Radio2">Transportation</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Lodging">
+                    <label class="form-check-label" for="Radio3">Lodging</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Food and Drink">
+                    <label class="form-check-label" for="Radio4">Food and Drink</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Activities">
+                    <label class="form-check-label" for="Radio5">Activities</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Emergency">
+                    <label class="form-check-label" for="Radio6">Emergency</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="categorybutton" value="Miscellaneous">
+                    <label class="form-check-label" for="Radio7">Misc.</label>
+                </div>
+  <div class="modal-footer">
                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" >Save</button>
+                    <button type="submit" class="btn btn-primary" id="addExpense">Save</button>
 
                     </button> 
 
                 </div>
 
+</form>
             </div>
 
         </div>
@@ -187,3 +226,5 @@
     </div>
 
      
+
+     </div>
