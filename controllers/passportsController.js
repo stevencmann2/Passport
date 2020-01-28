@@ -154,7 +154,7 @@ router.get("/api/trips", function (req, res) {
             res.json(dbPost);
         });
 });
-
+//DONE DONE DONE DONE DONE
 //trip create statement
 router.post("/api/trips", function (req, res) {
     const {
@@ -211,7 +211,7 @@ router.get('/mytrips', function (req, res, next) {
 
 // ROUTE FOR INDIVIDUAL USERS INDIVIDAL TRIP DASHBOARD
 router.get('/tripDash/:id', function (req, res, next) {
-    //this is an attempt
+    //this is an attempt////// if statement
     userID = req.user.id 
     ////
    db.Trip.findOne({
@@ -239,7 +239,7 @@ router.get("/api/budgetbreakdown", function (req, res) {
 //////////
 //finds a certain budget breakdown
 router.get("/api/budgetbreakdown/:id", function (req, res) {
-    db.BudgetBreakdown.findAll({
+    db.BudgetBreakdown.findOne({
         where: {
             id: req.params.id
         }
@@ -260,7 +260,7 @@ router.get("/api/budgetbreakdown/trips/:id", function (req, res) {
         res.json(dbBB);
     });
 });
-/////// DONE DONE DONE DONE DONE 
+
 // gets budget breakdown of a specific trip
 router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
     db.BudgetBreakdown.update(req.body,

@@ -1,7 +1,9 @@
 $(document).ready(function() {
 
+  
 const breakdownForm = $("#breakdownform");
  const expenseForm = $("#expenseForm");
+ 
 
  expenseBody = $("#expenseBody")
  ///// FORM THE BUDGET MANAGER 'BREAKDOWN' MODAL
@@ -205,22 +207,29 @@ function expensetoDb(event){
 });
 
 function getExpenses(){
-
+  ////////////////////////
+  ///////////////pass in id ??
   $.get("/api/expenses" , function(data) {
-      // console.log("Trips", data);
+      console.log("Trips", data);
        const expenses = data
       //  console.log(data)
       //  console.log(trips + 'TRIPS AS DATA')
       if (!expenses || !expenses.length) {
-          displayNoExpenses();
+        $("#expenseCard").hide();
         }
         else {
           // console.log('THere are trips');
+          $("#expenseCard").show();
+          // displayNoExpenses()
           console.log('there are expenses')
         }
       
 })
 };
+getExpenses();
+// uncomment when switch case developed 
+// displayNoExpenses();
+
 
 function displayNoExpenses(){
   // tripsContainer.empty();
@@ -229,4 +238,10 @@ function displayNoExpenses(){
   H2.html("You dont appear to have any expenses at the moment, click the button below in order to add an expense to your planned trip.");
   expenseBody.append(H2);
 }
+
+// function displayExpenses(){
+//   // THIS SHOULD SHOW WITHER THE CHART OR THE EXPENSES
+// }
+
+
 
