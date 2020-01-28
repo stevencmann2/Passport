@@ -226,34 +226,82 @@ router.get('/tripDash/:id', function (req, res, next) {
     });
 });
 
-router.get("/api/budgetbreakdown", function (req, res) {
-    var query = {};
-    if (req.query.trip_id) {
-        query.TripId = req.query.trip_id;
-    }
-    db.BudgetBreakdown.findAll({
-        where: query,
-        include: [db.Trip]
-    }).then(function (dbBB) {
-        res.json(dbBB);
-    });
-});
-
-  // POST route for saving a new post
-//   router.post("/api/budgetbreakdown", function(req, res) {
-//     db.BudgetBreakdown.create({
-        
-//     }).then(function (data) {
-
-//         res.json(data);
-//     })
-//     .catch(function (err) {
-
-//         res.json(err);
+// router.get("/api/budgetbreakdown", function (req, res) {
+//     var query = {};
+//     if (req.query.trip_id) {
+//         query.TripId = req.query.trip_id;
+//     }
+//     db.BudgetBreakdown.findAll({
+//         where: query,
+//         include: [db.Trip]
+//     }).then(function (dbBB) {
+//         res.json(dbBB);
 //     });
 // });
 
+//   POST route for saving a new post
+  router.post("/api/budgetbreakdown", function(req, res) {
+    const {
+        description,
+        amountDesired, 
+        BudgetCategoryId,
+        tripId
+    }=req.body
+    db.BudgetBreakdown.create({
+            description: description,
+            amountDesired: amountDesired,
+            BudgetCategoryId: BudgetCategoryId,
+            tripId: tripId,
+            
 
+        
+    }).then(function (data) {
+
+        res.json(data);
+    })
+    .catch(function (err) {
+
+        res.json(err);
+    });
+});
+
+
+router.get("/api/expenses", function (req, res) {
+    const userID = req.user.id
+    db.Expense.findAll({
+            where: {
+                user_id: userID
+            }
+        })
+        .then(function (dbExpense) {
+            res.json(dbExpense);
+        });
+});
+
+router.post("/api/expenses", function (req, res) {
+    const {
+        amount, 
+        description, 
+        categoryType
+    } = req.body;
+    const userID = req.user.id
+    console.log('THIS IS THE CONSOLE')
+    console.log(req.user.id);
+    db.Expense.create({
+            amount: amount,
+            description: description,
+            categoryType: categoryType,
+            user_id: userID
+            /////////insert foriegn key of user id here 
+        }).then(function (data) {
+
+            res.json(data);
+        })
+        .catch(function (err) {
+
+            res.json(err);
+        });
+});
 
 
 module.exports = router;
