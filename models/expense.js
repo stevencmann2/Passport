@@ -2,7 +2,7 @@ module.exports = function (sequelize, DataTypes) {
     const Expense = sequelize.define("Expense", {
 
         amount: {
-            type: DataTypes.DECIMAL(10,2), // the type of category will be predefined using front end JS
+            type: DataTypes.INTEGER, // the type of category will be predefined using front end JS
             allowNull: false,
         },
         description: {

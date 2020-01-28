@@ -279,11 +279,15 @@ router.get("/api/expenses", function (req, res) {
 });
 
 router.post("/api/expenses", function (req, res) {
+    console.log('INSERTINGGGGGGGGGGGGGGGGGGGGGG WE ARE INSERTINNNNNNNNNNNG')
     const {
         amount, 
         description, 
-        categoryType
+        categoryType,
+        BudgetBreakdownId
     } = req.body;
+    console.log('this is the req.body'+ req.body)
+    console.log(req.body)
     const userID = req.user.id
     console.log('THIS IS THE CONSOLE')
     console.log(req.user.id);
@@ -291,7 +295,8 @@ router.post("/api/expenses", function (req, res) {
             amount: amount,
             description: description,
             categoryType: categoryType,
-            user_id: userID
+            user_id: userID,
+            BudgetBreakdownId: BudgetBreakdownId
             /////////insert foriegn key of user id here 
         }).then(function (data) {
 
