@@ -30,7 +30,7 @@ function displayNoTrips(){
     const H2 = $("<h2>");
     H2.css({ "text-align": "center", "margin-top": "50px" });
     H2.html("You dont appear to have any trips, click <a href='/user'>here</a> in order to create a new trip.");
-    notrips.append(messageH2);
+    notrips.append(H2);
 }
 
 // constructs rows but doesnt fill in the html
