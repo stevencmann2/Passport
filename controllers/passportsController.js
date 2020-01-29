@@ -261,17 +261,17 @@ router.get("/api/budgetbreakdown/trips/:id", function (req, res) {
     });
 });
 
-// gets budget breakdown of a specific trip
-// router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
-//     db.BudgetBreakdown.update(req.body,
-//         {
-//             where: {
-//             TripId: req.params.id
-//         }
-//     }).then(function (dbBB) {
-//         res.json(dbBB);
-//     });
-// });
+// updates planned out budget breakdown of a specific trip
+router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
+    db.BudgetBreakdown.update(req.body,
+        {
+            where: {
+            TripId: req.params.id
+        }
+    }).then(function (dbBB) {
+        res.json(dbBB);
+    });
+});
 
 //  POST route for a new instance of a budgetbreakdown
   router.post("/api/budgetbreakdown", function(req, res) {
