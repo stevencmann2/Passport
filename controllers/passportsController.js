@@ -275,18 +275,18 @@ router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
 
 //  POST route for a new instance of a budgetbreakdown
   router.post("/api/budgetbreakdown", function(req, res) {
-    const {
-        description,
-        amountDesired, 
-        BudgetCategoryId,
-        tripId
-    }=req.body
-    db.BudgetBreakdown.create({
-            description: description,
-            amountDesired: amountDesired,
-            BudgetCategoryId: BudgetCategoryId,
-            tripId: tripId  
-    }).then(function (data) {
+      console.log('hello world')
+    // const {
+    //     description,
+    //     amountDesired, 
+    //     BudgetCategoryId,
+    //     tripId
+    // }=req.body
+    const {budget} = req.body;
+    console.log(req.body)
+    console.log(budget)
+    db.BudgetBreakdown.bulkCreate(
+        budget).then(function (data) {
         res.json(data);
     })
     .catch(function (err) {

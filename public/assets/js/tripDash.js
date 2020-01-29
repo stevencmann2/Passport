@@ -6,31 +6,16 @@ const breakdownForm = $("#breakdownform");
  
 
  expenseBody = $("#expenseBody")
- ///// FORM THE BUDGET MANAGER 'BREAKDOWN' MODAL
- let airfareBudget = $("#airfare");
- let transportationBudget = $("#transportation");
- let lodgingBudget = $("#lodging");
- let foodBudget = $("#food");
- let activitiesBudget = $("#activities");
- let emergencyBudget = $("#emergency");
- let miscBudget = $("#misc");
-///// FORM THE BUDGET MANAGER 'BREAKDOWN' MODAL
-// console.log(airfareBudget)
-// console.log(typeof airfareBudget)
-// airfareBudget = airfareBudget.val();
-// console.log(airfareBudget)
-// console.log(typeof airfareBudget)
-// airfareBudget = airfareBudget.val();
-// transportationBudget = transportationBudget.val().trim();
-// lodgingBudget =lodgingBudget.val().trim();
-// foodBudget = foodBudget.val().trim();
-// activitiesBudget = activitiesBudget.val().trim();
-// emergencyBudget = emergencyBudget.val().trim();
-// miscBudget = miscBudget.val().trim();
+ 
 
-// console.log('these are the values')
-// // console.log(airfareBudget);
-// console.log(transportationBudget)
+
+
+
+
+
+console.log('these are the values')
+// console.log(airfareBudget);
+
 
 
 
@@ -115,6 +100,23 @@ $(breakdownForm).on("submit", budgetBreakdownSubmit);
 function budgetBreakdownSubmit(event){
     event.preventDefault();
 
+///// FORM THE BUDGET MANAGER 'BREAKDOWN' MODAL
+ const airfareBudget = $("#airfare").val().trim();
+ const transportationBudget = $("#transportation").val().trim();
+ const lodgingBudget = $("#lodging").val().trim();
+ const foodBudget = $("#food").val().trim();
+ const activitiesBudget = $("#activities").val().trim();
+ const emergencyBudget = $("#emergency").val().trim();
+ const miscBudget = $("#misc").val().trim();
+/// FORM THE BUDGET MANAGER 'BREAKDOWN' MODAL
+console.log(airfareBudget)
+console.log(transportationBudget)
+console.log(lodgingBudget)
+console.log(foodBudget)
+console.log(activitiesBudget)
+console.log(emergencyBudget)
+console.log(miscBudget)
+
 ///// breakdownArray
 const breakdownArray=[airfareBudget, transportationBudget, lodgingBudget, 
   foodBudget, activitiesBudget, emergencyBudget, miscBudget];
@@ -127,17 +129,17 @@ const breakdownArray=[airfareBudget, transportationBudget, lodgingBudget,
     description: null,
     amountDesired: parseInt(breakdownArray[i]),
     BudgetCategoryId: parseInt(i+1), 
-    tripId: parseInt(tripId)   
+    TripId: parseInt(tripId)   
 }
 // console.log(BBdata);
-dataArray.push.BBdata
+dataArray.push(BBdata)
  }
-
+console.log(dataArray)
 // Send the POST request.
 $.ajax("/api/budgetbreakdown", {
   
   type: "POST",
-  data: dataArray
+  data: {budget: dataArray}
   
 }).then(
   function() {
@@ -170,7 +172,7 @@ function expensetoDb(event){
 
 
   console.log(`${BBid} this is the category button`)
-    // burger_name: $("#addburger [name=burger]").val().trim(),
+    
 
  let newExpense = {
    amount: parseInt(expenseAmount.val().trim()),
@@ -210,7 +212,7 @@ function getExpenses(){
   ////////////////////////
   ///////////////pass in id ??
   $.get("/api/expenses" , function(data) {
-      console.log("Trips", data);
+      console.log("Expense", data);
        const expenses = data
       //  console.log(data)
       //  console.log(trips + 'TRIPS AS DATA')
