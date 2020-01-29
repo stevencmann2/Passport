@@ -6,11 +6,10 @@
         Your Budget Manager
       </div>
       <div class="card-body">
-        <h5 class="card-title">Your Budget </h5>
-        <p class="card-text">THIS IS WHERE THE USER WILL DEFINE HOW MUCH MONEY THEY WANT TO SPEND
-          BY CATEGORY AND WELL DISPLAY A CHART WITH THEIR BUDGET GOALS</p>
-        <button type="submit" class="btn btn-success btn-block btn-lg mb-4" id="budgetManager" value="Submit">View Budget
-          Manager</button>
+        <h5 class="card-title"> </h5>
+        <p class="card-text" id="breakdownBody"></p>
+        <button type="submit" class="btn btn-success btn-block btn-lg mb-4" id="budgetManager" value="Submit">Set Budget</button>
+           
       </div>
     </div>
 
@@ -23,7 +22,7 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">Your Expenses</h5>
-        <p class="card-text" id="expenseBody">THIS IS WHERE WE WILL LIST EXPENSES AND LET THEM ADD EXPENSES</p>
+        <p class="card-text" id="expenseBody"></p>
         <button type="submit" class="btn btn-success btn-block btn-lg mb-4" id="addExpense" value="submit">Add Expense</button>
       </div>
 
@@ -95,7 +94,7 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary" id="budgetManageSave" value="submit">Save Budget</button>
-
+        <button type="submit" class="btn btn-primary btn-warning" id="updatebudgetManager" value="Submit">Update Budget Categories</button>
                   </button>
 
                 </div>
@@ -163,7 +162,7 @@
               <form id="expenseForm">
                 <div class="form-group">
                   <label for="expenseamount">Amount ($)</label>
-                  <input type="text" step="any" min="0" class="form-control" id="expenseamount" placeholder="Dollar Amont">
+                  <input type="number" step="any" min="0" class="form-control" id="expenseamount" placeholder="Dollar Amont">
                 </div>
                 <div class="form-group" id="categories">
                   <label for="expensedescription">Description</label>
