@@ -3,40 +3,30 @@ $(document).ready(function() {
   
 const breakdownForm = $("#breakdownform");
  const expenseForm = $("#expenseForm");
- 
-
  expenseBody = $("#expenseBody")
  
-
-
-
-
-
 
 console.log('these are the values')
 // console.log(airfareBudget);
 
-
-
-
  //EXPENSE MODAL 
- const expenseAmount = $("#expenseamount")
- const expenseDescription = $("#expensedescription")
+ const expenseAmount = $("#expenseamount");
+ const expenseDescription = $("#expensedescription");
 
 
 
-var url = window.location.pathname;
-console.log(url)
-  var tripId;
-  if (url.indexOf("/") !== -1) {
-    tripId = url.split("/")[2];
-    // console.log(tripId+ "this is the trip Id with my javascript")
-    // getBudgetBreakdown(tripId);
-  }
-  // If there's no authorId we just get all posts as usual
-  else {
-    // console.log(`there is no ${tripId}`);
-  }
+// var url = window.location.pathname;
+// console.log(url)
+//   var tripId;
+//   if (url.indexOf("/") !== -1) {
+//     tripId = url.split("/")[2];
+//     // console.log(tripId+ "this is the trip Id with my javascript")
+//     // getBudgetBreakdown(tripId);
+//   }
+//   // If there's no authorId we just get all posts as usual
+//   else {
+//     // console.log(`there is no ${tripId}`);
+//   }
 
 
   // This function grabs posts from the BB database and updates the view
@@ -99,6 +89,14 @@ $(breakdownForm).on("submit", budgetBreakdownSubmit);
 /// HANDLES MODAL SUBMIT FOR BUDGET BREAKDOWN
 function budgetBreakdownSubmit(event){
     event.preventDefault();
+
+    // grabbing the tripId from the URL
+    const url = window.location.pathname;
+console.log(url)
+  var tripId;
+  if (url.indexOf("/") !== -1) {
+    tripId = url.split("/")[2];
+  }
 
 ///// FORM THE BUDGET MANAGER 'BREAKDOWN' MODAL
  const airfareBudget = $("#airfare").val().trim();
@@ -206,22 +204,20 @@ function expensetoDb(event){
 );
 
 }
-});
+
 
 function getExpenses(){
-  ////////////////////////
-  ///////////////pass in id ??
+  
   $.get("/api/expenses" , function(data) {
       console.log("Expense", data);
        const expenses = data
       //  console.log(data)
       //  console.log(trips + 'TRIPS AS DATA')
       if (!expenses || !expenses.length) {
-        $("#expenseCard").hide();
+        console.log('there are no expenses currently')
         }
         else {
           // console.log('THere are trips');
-          $("#expenseCard").show();
           // displayNoExpenses()
           console.log('there are expenses')
         }
@@ -240,10 +236,52 @@ function displayNoExpenses(){
   H2.html("You dont appear to have any expenses at the moment, click the button below in order to add an expense to your planned trip.");
   expenseBody.append(H2);
 }
+displayNoExpenses()
 
 // function displayExpenses(){
 //   // THIS SHOULD SHOW WITHER THE CHART OR THE EXPENSES
 // }
+function noBudgetBreakdown(){
+  $("#budgetManager").show()
+  $("#updatebudgetManager").hide()
+  breakdownBody = $("#breakdownBody")
+  let H2 = $("<h2>");
+  H2.css({ "text-align": "center", "margin-top": "50px" });
+  H2.html("You dont appear to have any expenses at the moment, click the button below in order to add an expense to your planned trip.");
+  breakdownBody.append(H2);
+};
+
+function budgetbreakdownGet(){
+  const url = window.location.pathname;
+console.log(url)
+  var tripId;
+  if (url.indexOf("/") !== -1) {
+    tripId = url.split("/")[2];
+  }
+    $.get(`/api/budgetbreakdown/trips/${tripId}` , function(data) {
+      
+        // console.log("Trips", data);
+         const BBreakdown = data
+
+         console.log(data)
+        
+        if (!BBreakdown || !BBreakdown.length) {
+          $("#expenseCard").hide();
+          noBudgetBreakdown();
+          }
+          else {
+            
+            $("#expenseCard").show();
+            $("#budgetManager").hide()
+            $("#updatebudgetManager").show()
+
+          }
+        
+})
+
+}
+
+budgetbreakdownGet()
 
 
-
+});
