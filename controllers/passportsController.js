@@ -296,6 +296,15 @@ router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
 
 // gets expenses by querying user ID
 ///////////// DONE //////////////////
+router.get("/expenses", function( req, res){
+
+    res.render( "expenses"
+
+
+
+});
+
+
 router.get("/api/expenses", function (req, res) {
     
     const userID = req.user.id
