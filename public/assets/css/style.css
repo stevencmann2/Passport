@@ -1,29 +1,5 @@
-/* // Import Bootstrap’s source Sass files
-
-// @import "../node_modules/bootstrap/scss/functions";
-// @import "../node_modules/bootstrap/scss/variables";
-// @import "../node_modules/bootstrap/scss/mixins";
-// @import "../node_modules/bootstrap/scss/reboot";
-// @import "../node_modules/bootstrap/scss/type";
-// @import "../node_modules/bootstrap/scss/images";
-// @import "../node_modules/bootstrap/scss/code";
-// @import "../node_modules/bootstrap/scss/grid"; */
-
-
-/* // Import Bootstrap’s source Sass files
-
-// @import "../node_modules/bootstrap/scss/functions";
-// @import "../node_modules/bootstrap/scss/variables";
-// @import "../node_modules/bootstrap/scss/mixins";
-// @import "../node_modules/bootstrap/scss/reboot";
-// @import "../node_modules/bootstrap/scss/type";
-// @import "../node_modules/bootstrap/scss/images";
-// @import "../node_modules/bootstrap/scss/code";
-// @import "../node_modules/bootstrap/scss/grid"; */
-
-/* Welcome&Home Page */
 .welcome-header {
-    padding: 180px;
+    padding: 195px;
     text-align: center;
     font-family: 'Comfortaa', cursive;
 }
