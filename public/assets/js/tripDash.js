@@ -6,9 +6,6 @@ $(document).ready(function () {
   expenseBody = $("#expenseBody")
 
 
-  console.log('these are the values')
-  // console.log(airfareBudget);
-
  
 
   ///// BUDGET MANAGER MODAL SHOW
@@ -128,6 +125,7 @@ $(document).ready(function () {
     }
     console.log(newExpense.amount, typeof newExpense.amount)
     console.log(newExpense.description, typeof newExpense.description)
+
     console.log(newExpense.BudgetBreakdownId, typeof newExpense.BudgetBreakdownId)
 
     console.log(newExpense);
@@ -158,10 +156,11 @@ $(document).ready(function () {
     $.get("/api/expenses", function (data) {
       console.log("Expense", data);
       const expenses = data
-      //  console.log(data)
-      //  console.log(trips + 'TRIPS AS DATA')
+       console.log(data)
+       console.log(expenses + 'EXP AS DATA')
       if (!expenses || !expenses.length) {
         console.log('there are no expenses currently')
+        displayNoExpenses()
       } else {
         // console.log('THere are trips');
         // displayNoExpenses()
@@ -185,7 +184,7 @@ $(document).ready(function () {
     H2.html("You dont appear to have any expenses at the moment, click the button below in order to add an expense to your planned trip.");
     expenseBody.append(H2);
   }
-  displayNoExpenses()
+  
 
   // function displayExpenses(){
   //   // THIS SHOULD SHOW WITHER THE CHART OR THE EXPENSES
@@ -205,7 +204,6 @@ $(document).ready(function () {
 
   function budgetbreakdownGet() {
     const url = window.location.pathname;
-    console.log(url)
     var tripId;
     if (url.indexOf("/") !== -1) {
       tripId = url.split("/")[2];
