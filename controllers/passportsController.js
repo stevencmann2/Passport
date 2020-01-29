@@ -165,8 +165,8 @@ router.post("/api/trips", function (req, res) {
         returning
     } = req.body;
     const userID = req.user.id
-    console.log('THIS IS THE CONSOLE')
-    console.log(req.user.id);
+    // console.log('THIS IS THE CONSOLE')
+    // console.log(req.user.id);
     db.Trip.create({
             tripname: tripname,
             totalbudget: totalbudget,
@@ -212,12 +212,11 @@ router.get('/mytrips', function (req, res, next) {
 // ROUTE FOR INDIVIDUAL USERS INDIVIDAL TRIP DASHBOARD
 router.get('/tripDash/:id', function (req, res, next) {
     //this is an attempt////// if statement
-    userID = req.user.id 
+     
     ////
    db.Trip.findOne({
         where: {
-            id: req.params.id,
-            user_id: userID     // ????????????????/
+            id: req.params.id
         }
     }).then(function (dbTrip) {
         res.render('tripDash', {
@@ -263,9 +262,16 @@ router.get("/api/budgetbreakdown/trips/:id", function (req, res) {
 
 // updates planned out budget breakdown of a specific trip
 router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
-    db.BudgetBreakdown.update(req.body,
-        {
-            where: {
+
+    
+    // console.log(req.body)
+    const {budget} = req.body
+    console.log('000000000000000000000000000000000000000000000000')
+    // console.log(req.body)
+    console.log(budget)
+    db.BudgetBreakdown.update(budget,
+        
+           {where: {
             TripId: req.params.id
         }
     }).then(function (dbBB) {
@@ -275,7 +281,7 @@ router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
 
 //  POST route for a new instance of a budgetbreakdown
   router.post("/api/budgetbreakdown", function(req, res) {
-      console.log('hello world')
+    //   console.log('hello world')
     // const {
     //     description,
     //     amountDesired, 
@@ -313,18 +319,18 @@ router.get("/api/expenses", function (req, res) {
 
 
 router.post("/api/expenses", function (req, res) {
-    console.log('INSERTINGGGGGGGGGGGGGGGGGGGGGG WE ARE INSERTINNNNNNNNNNNG')
+    // console.log('INSERTINGGGGGGGGGGGGGGGGGGGGGG WE ARE INSERTINNNNNNNNNNNG')
     const {
         amount, 
         description, 
         categoryType,
         BudgetBreakdownId
     } = req.body;
-    console.log('this is the req.body'+ req.body)
-    console.log(req.body)
+    // console.log('this is the req.body'+ req.body)
+    // console.log(req.body)
     const userID = req.user.id
-    console.log('THIS IS THE CONSOLE')
-    console.log(req.user.id);
+    // console.log('THIS IS THE CONSOLE')
+    // console.log(req.user.id);
     db.Expense.create({
             amount: amount,
             description: description,
