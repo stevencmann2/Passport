@@ -323,7 +323,6 @@ router.post("/api/expenses", function (req, res) {
     const {
         amount, 
         description, 
-        categoryType,
         BudgetBreakdownId
     } = req.body;
     // console.log('this is the req.body'+ req.body)
@@ -334,7 +333,6 @@ router.post("/api/expenses", function (req, res) {
     db.Expense.create({
             amount: amount,
             description: description,
-            categoryType: categoryType,
             user_id: userID,
             BudgetBreakdownId: BudgetBreakdownId
             /////////insert foriegn key of user id here 
