@@ -304,11 +304,12 @@ router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
 ///////////// DONE //////////////////
 router.get("/expenses", function( req, res){
 
-    res.render( "expenses"
-
-
-
+    res.render( "expenses", {
+        title: 'My Expenses'
+    });
 });
+
+
 
 
 router.get("/api/expenses", function (req, res) {
