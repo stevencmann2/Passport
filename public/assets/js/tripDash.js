@@ -111,17 +111,23 @@ $(document).ready(function () {
     const BBid = $("input[name='categorybutton']:checked").val().trim();
 
     console.log(`${BBid} this is the category button`)
-
+    const url = window.location.pathname;
+    console.log(url)
+    var tripId;
+    if (url.indexOf("/") !== -1) {
+      tripId = url.split("/")[2];
+    }
 
     let newExpense = {
       amount: parseInt(expenseAmount.val().trim()),
       description: expenseDescription.val().trim(),
-      BudgetBreakdownId: parseInt(BBid)
+      BudgetCategoryId: parseInt(BBid),
+      TripId: parseInt(tripId)
     }
     console.log(newExpense.amount, typeof newExpense.amount)
     console.log(newExpense.description, typeof newExpense.description)
 
-    console.log(newExpense.BudgetBreakdownId, typeof newExpense.BudgetBreakdownId)
+    console.log(newExpense.BudgetCategoryId, typeof newExpense.BudgetCategoryId)
 
     console.log(newExpense);
 

@@ -24,7 +24,10 @@ module.exports = function (sequelize, DataTypes) {
     });
     Expense.associate = function (models) {
         // We're saying that a Post should belong to an Author
-        Expense.belongsTo(models.BudgetBreakdown, {
+        Expense.belongsTo(models.BudgetCategory, {
+         
+        });
+        Expense.belongsTo(models.Trip, {
          
         });
     }
