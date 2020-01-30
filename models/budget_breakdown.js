@@ -18,16 +18,24 @@ module.exports = function(sequelize, DataTypes) {
     });
     BudgetBreakdown.associate = function(models) {
         
-        BudgetBreakdown.belongsTo(models.BudgetCategory, {
-            foreignKey: {
-                allowNull: false
-              }
+      BudgetBreakdown.belongsTo(models.BudgetCategory, {
+          foreignKey: {
+              allowNull: false
+            }
       });
       BudgetBreakdown.belongsTo(models.Trip, {
         foreignKey: {
             allowNull: false
           }
-  });
+      });
+      BudgetBreakdown.belongsTo(models.Expense, {
+        
+      })
+
+
+
+
+      
     }
     return BudgetBreakdown;
   }

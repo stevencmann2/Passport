@@ -333,18 +333,21 @@ router.post("/api/expenses", function (req, res) {
     const {
         amount, 
         description, 
-        BudgetBreakdownId
+        BudgetCategoryId,
+        TripId
     } = req.body;
     // console.log('this is the req.body'+ req.body)
-    // console.log(req.body)
+    console.log(req.body)
     const userID = req.user.id
+
     // console.log('THIS IS THE CONSOLE')
     // console.log(req.user.id);
     db.Expense.create({
             amount: amount,
             description: description,
             user_id: userID,
-            BudgetBreakdownId: BudgetBreakdownId
+            BudgetCategoryId: BudgetCategoryId,
+            TripId: TripId
             /////////insert foriegn key of user id here 
         }).then(function (data) {
 
@@ -359,17 +362,75 @@ router.post("/api/expenses", function (req, res) {
 ////////////////
 ////////////// DEBUG NOT SHOWING 'NULLLLL' ALSO PASS IN USERID
 router.get("/api/expenses/:id", function (req, res) {
-    const userID = req.user.id
+    console.log(req.params.id);
 
     db.Expense.findOne({
             where: {
-                id: req.params     
+                id: req.params.id     
             }
         })
         .then(function (dbExpense) {
             res.json(dbExpense);
         });
 });
+
+
+router.get("/api/expenses/trips/:id", function (req, res) {
+    const userID = req.user.id
+    console.log(userID)
+    console.log(req.params.id)
+    db.Expense.findAll({
+            where: {
+                user_id: userID,
+                TripId: req.params.id
+            },
+            include:[{
+            model: db.BudgetBreakdown,
+            where: {TripId: req.params.id}
+                    }]
+        })
+        .then(function (dbExpense) {
+            res.json(dbExpense);
+        });
+});
+
+
+
+
+
+
+
+
+// db.Expense.findAll({
+//     where: {
+//         tripID: req.params.id
+
+//     },
+//     include: [
+//         {
+//         model: db.BudgetBreakdown,
+//         as: TripId
+
+
+
+
+
+//         }
+//     ]
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
