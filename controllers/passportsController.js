@@ -59,8 +59,8 @@ router.get('/user', secured(), function (req, res, next) {
     // console.log(req);
     // console.log(req.user)
     res.render('user', {
-        title: 'Dashboard',
-        userProfile: JSON.stringify(userProfile, null, 2)
+        title: 'Dashboard'
+        // userProfile: JSON.stringify(userProfile, null, 2)
 
     });
 });
