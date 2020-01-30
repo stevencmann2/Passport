@@ -48,6 +48,8 @@ module.exports = function (sequelize, DataTypes) {
     Trip.hasMany(models.BudgetBreakdown, {
 
     });
+    Trip.hasMany(models.Expense, {
+    });
   }
   return Trip;
 };

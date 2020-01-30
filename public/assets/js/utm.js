@@ -3,15 +3,10 @@ $(document).ready(function(){
 
 //from trip creation form
 //////////////////////////////////////// MAY WANT TO ADD TO LOWERCASE AND PARSING HERE
-const totalBudget = $("#totalbudget");
-const returning = $("#returning");
-const departing = $("#departing");
-const destination =$("#destination");
-const tripName = $("#tripname");
+
+
+
 const userTripForm = $("#user-trip-form");
-
-
-
 // console.log(req.body)
 // console.log(req.user)
 ///////submits to constructors to database
@@ -20,6 +15,12 @@ $(userTripForm).on("submit", userTripSubmit);
 
 ///// HANDLES FORM SUBMIT CLICK
 function userTripSubmit(event){
+  const totalBudget = $("#totalbudget");
+const returning = $("#returning");
+const departing = $("#departing");
+const destination =$("#destination");
+const tripName = $("#tripname");
+
     event.preventDefault();
 // TRIP CONSTRUCTOR POST TO DB
 // MAKE SURE PROPERTY NAMES ARE RIGHT
