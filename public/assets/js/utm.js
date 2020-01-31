@@ -1,5 +1,6 @@
 //// UTM - USER TRIP MANAGER
 $(document).ready(function(){
+    console.log('utm.js loaded')
 
 $("#createTrip").show();
 
@@ -24,7 +25,7 @@ $("#createTrip").on("click", function () {
 <br>
 
 <div class="container">
-    <form id="user-trip-form" method="POST">
+    <form id="user-trip-form">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
@@ -79,7 +80,7 @@ $("#createTrip").on("click", function () {
             <div class="col-3"></div>
             <div class="col-6">
                 <div class="form-group">
-                    <input type="submit" class="form-control submit" value="Submit">
+                    <input type="submit" id="brandon" class="form-control submit" value="Submit">
                 </div>
                 <div class="col-3"></div>
             </div>
@@ -89,82 +90,19 @@ $("#createTrip").on("click", function () {
 });
 
 
-
-
-
-// const userTripForm = $("#user-trip-form");
-
-// // console.log(req.body)
-// // console.log(req.user)
-// ///////submits to constructors to database
-// $(userTripForm).on("submit", userTripSubmit);
-
-
-// ///// HANDLES FORM SUBMIT CLICK
-// function userTripSubmit(){
-   
-//   console.log('this is in the form')
- 
-// // TRIP CONSTRUCTOR POST TO DB
-// // MAKE SURE PROPERTY NAMES ARE RIGHT
-// //from trip creation form
-// //////////////////////////////////////// MAY WANT TO ADD TO LOWERCASE AND PARSING HERE
-// const totalBudget = $("#totalbudget");
-// const returning = $("#returning");
-// const departing = $("#departing");
-// const destination =$("#destination");
-// const tripName = $("#tripname");
-// // event.stopImmediatePropagation();
-// event.preventDefault();
-
-
-// ///// FORMATED NOW AS yyyy-MM-dd
-// let newTrip = {
-//     tripname: tripName.val().trim(),
-//     totalbudget: parseInt(totalBudget.val().trim()),
-//     destination: destination.val().trim(),
-//     departing: departing.val(),
-//     returning: returning.val()
-
-// }
-
-// console.log(newTrip.totalbudget, typeof newTrip.totalbudget)
-// console.log(newTrip.destination, typeof newTrip.destination)
-// console.log(newTrip.departing, typeof newTrip.departing)
-// console.log(newTrip.returning, typeof newTrip.returning)
-// console.log(newTrip.tripname, typeof newTrip.tripname)
-// console.log(newTrip, typeof newTrip)
-
-// // Send the POST request.
-
-// $.ajax("/api/trips", {
-  
-//   type: "POST",
-//   data: newTrip
-  
-// }).then(
-//   function() {
-//     console.log("added new trip");
-//     // Reload the page to get the updated list
-//     window.location.href = "/myTrips";
-//   }
-// );
-// }
-
-
 const userTripForm = $("#user-trip-form");
-// console.log(req.body)
-// console.log(req.user)
+
 ///////submits to constructors to database
-$(userTripForm).on("submit", userTripSubmit);
+$(document).on("click", "#brandon" , userTripSubmit);
 ///// HANDLES FORM SUBMIT CLICK
 function userTripSubmit(event){
-  const totalBudget = $("#totalbudget");
-const returning = $("#returning");
-const departing = $("#departing");
-const destination =$("#destination");
-const tripName = $("#tripname");
     event.preventDefault();
+    const totalBudget = $("#totalbudget");
+    const returning = $("#returning");
+    const departing = $("#departing");
+    const destination =$("#destination");
+    const tripName = $("#tripname");
+    
 // TRIP CONSTRUCTOR POST TO DB
 // MAKE SURE PROPERTY NAMES ARE RIGHT
 ///// FORMATED NOW AS yyyy-MM-dd
@@ -175,12 +113,13 @@ let newTrip = {
     departing: departing.val(),
     returning: returning.val()
 }
-console.log(newTrip.totalbudget, typeof newTrip.totalbudget)
-console.log(newTrip.destination, typeof newTrip.destination)
-console.log(newTrip.departing, typeof newTrip.departing)
-console.log(newTrip.returning, typeof newTrip.returning)
-console.log(newTrip.tripname, typeof newTrip.tripname)
-console.log(newTrip, typeof newTrip)
+    console.log(newTrip.totalbudget, typeof newTrip.totalbudget)
+    console.log(newTrip.destination, typeof newTrip.destination)
+    console.log(newTrip.departing, typeof newTrip.departing)
+    console.log(newTrip.returning, typeof newTrip.returning)
+    console.log(newTrip.tripname, typeof newTrip.tripname)
+    console.log(newTrip, typeof newTrip)
+
 // Send the POST request.
 $.ajax("/api/trips", {
   type: "POST",
