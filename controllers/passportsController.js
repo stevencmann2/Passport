@@ -78,8 +78,6 @@ router.get('/login', passport.authenticate('auth0', {
 // Perform the final stage of authentication and redirect to previously requested URL or '/user'
 router.get('/callback', function (req, res, next) {
     passport.authenticate('auth0', function (err, user, info) {
-        console.log(err);
-        console.log(user);
         if (err) {
             return next(err);
         }
@@ -99,7 +97,7 @@ router.get('/callback', function (req, res, next) {
 
 // Perform session logout and redirect to homepage
 router.get('/logout', (req, res) => {
-    req.logout();
+    // req.logout();
 
     var returnTo = req.protocol + '://' + req.hostname;
     var port = req.connection.localPort;
@@ -128,21 +126,6 @@ router.get('/contact', function (req, res, next) {
     });
 });
 
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-/////////////////////////           ////////////////////////////////////
-////////////////////////            ////////////////////////////////////
-
-// POSTING NEW USER & TRIP //
-
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-// GET route for getting all of the posts
-////////// done done done
 router.get("/api/trips", function (req, res) {
     const userID = req.user.id
     db.Trip.findAll({
@@ -154,7 +137,7 @@ router.get("/api/trips", function (req, res) {
             res.json(dbPost);
         });
 });
-//DONE DONE DONE DONE DONE
+
 //trip create statement
 router.post("/api/trips", function (req, res) {
     const {
@@ -173,7 +156,6 @@ router.post("/api/trips", function (req, res) {
             departing: departing,
             returning: returning,
             user_id: userID
-            /////////insert foriegn key of user id here 
         }).then(function (data) {
 
             res.json(data);
@@ -183,12 +165,6 @@ router.post("/api/trips", function (req, res) {
             res.json(err);
         });
 });
-
-////////
-//////
-//TEST THIS ONE ONE MORE TIME
-/////
-////
 
 router.get("/api/trips/:id", function (req, res) {
     userID = req.user.id;
@@ -202,7 +178,6 @@ router.get("/api/trips/:id", function (req, res) {
     });
 });
 
-///// done done 
 /* GET MYTRIPS . */
 router.get('/mytrips', function (req, res, next) {
     res.render('myTrips', {
@@ -210,15 +185,9 @@ router.get('/mytrips', function (req, res, next) {
     });
 });
 
-/////////// WORKS BUT USER HAS ACCESS TO ANY TRIP?
-////// GET HELP 
-
 // ROUTE FOR INDIVIDUAL USERS INDIVIDAL TRIP DASHBOARD
 router.get('/tripDash/:id', function (req, res, next) {
-    //this is an attempt////// if statement
     userID = req.user.id;
-    console.log(userID)
-    ////
     db.Trip.findOne({
         where: {
             id: req.params.id,
@@ -231,16 +200,12 @@ router.get('/tripDash/:id', function (req, res, next) {
     });
 });
 
-////////////////   DONE DONE DONE
-//////////
 router.get("/api/budgetbreakdown", function (req, res) {
     db.BudgetBreakdown.findAll({}).then(function (dbBB) {
         res.json(dbBB);
     });
 });
 
-////////////////   DONE DONE DONE
-//////////
 //finds a certain budget breakdown
 router.get("/api/budgetbreakdown/:id", function (req, res) {
     db.BudgetBreakdown.findOne({
@@ -252,8 +217,6 @@ router.get("/api/budgetbreakdown/:id", function (req, res) {
     });
 });
 
-////////////////   DONE DONE DONE
-//////////
 // gets budget breakdown of a specific trip
 router.get("/api/budgetbreakdown/trips/:id", function (req, res) {
     db.BudgetBreakdown.findAll({
@@ -273,22 +236,22 @@ router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
     const {
         budget
     } = req.body
- 
+
     budget.forEach(element => {
         console.log(`${element} i am ${element.BudgetCategoryId}`)
-    
-    console.log(budget)
-    db.BudgetBreakdown.update(element,
-      
-        {
-            where: {
-                TripId: req.params.id,
-                BudgetCategoryId: element.BudgetCategoryId
-            }
-        }).then(function (dbBB) {
-        res.json(dbBB);
-    });
-})
+
+        console.log(budget)
+        db.BudgetBreakdown.update(element,
+
+            {
+                where: {
+                    TripId: req.params.id,
+                    BudgetCategoryId: element.BudgetCategoryId
+                }
+            }).then(function (dbBB) {
+            res.json(dbBB);
+        });
+    })
 });
 
 //  POST route for a new instance of a budgetbreakdown
@@ -308,11 +271,9 @@ router.post("/api/budgetbreakdown", function (req, res) {
 });
 
 // gets expenses by querying user ID
-///////////// DONE //////////////////
 router.get("/api/expenses", function (req, res) {
 
     const userID = req.user.id
-    // console.log(userID)
     db.Expense.findAll({
             where: {
                 user_id: userID
@@ -326,8 +287,6 @@ router.get("/api/expenses", function (req, res) {
 router.get("/api/expenses/trips/:id", function (req, res) {
 
     const userID = req.user.id
-    console.log(userID)
-    console.log(req.params.id)
     db.Expense.findAll({
             where: {
                 TripId: req.params.id,
