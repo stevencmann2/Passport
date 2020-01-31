@@ -4,6 +4,7 @@ $(document).ready(function(){
 
 $("#createTrip").show();
 
+
 $("#viewTrip").on("click", function () {
   event.preventDefault();
   window.location.href="/myTrips"
@@ -89,13 +90,18 @@ $("#createTrip").on("click", function () {
 </div>`)
 });
 
-
 const userTripForm = $("#user-trip-form");
 
 ///////submits to constructors to database
 $(document).on("click", "#brandon" , userTripSubmit);
 ///// HANDLES FORM SUBMIT CLICK
 function userTripSubmit(event){
+  const totalBudget = $("#totalbudget");
+const returning = $("#returning");
+const departing = $("#departing");
+const destination =$("#destination");
+const tripName = $("#tripname");
+
     event.preventDefault();
     const totalBudget = $("#totalbudget");
     const returning = $("#returning");

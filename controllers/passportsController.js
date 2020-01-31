@@ -23,7 +23,7 @@ const db = require('../models')
 
 /* GET index page. */
 router.get('/', function (req, res, next) {
-    // console.log('req.user ' + req.user + 'req.user')
+    
     res.render('index', {
         title: 'Welcome to Passport'
     });
@@ -56,8 +56,7 @@ router.get('/user', secured(), function (req, res, next) {
     // create user w email
     // then...
 
-    // console.log(req);
-    // console.log(req.user)
+    
     res.render('user', {
         title: 'Dashboard'
         // userProfile: JSON.stringify(userProfile, null, 2)
@@ -79,7 +78,7 @@ router.get('/login', passport.authenticate('auth0', {
 // Perform the final stage of authentication and redirect to previously requested URL or '/user'
 router.get('/callback', function (req, res, next) {
     passport.authenticate('auth0', function (err, user, info) {
-        // console.log(user)
+        
         if (err) {
             return next(err);
         }
@@ -165,8 +164,7 @@ router.post("/api/trips", function (req, res) {
         returning
     } = req.body;
     const userID = req.user.id
-    // console.log('THIS IS THE CONSOLE')
-    // console.log(req.user.id);
+ 
     db.Trip.create({
             tripname: tripname,
             totalbudget: totalbudget,
@@ -184,16 +182,22 @@ router.post("/api/trips", function (req, res) {
             res.json(err);
         });
 });
-// gets trip with specific trip #
-// pass in user object for security? reveals user object 
+
+////////
+//////
+//TEST THIS ONE ONE MORE TIME
+/////
+////
 
 router.get("/api/trips/:id", function (req, res) {
+    userID = req.user.id;
     db.Trip.findOne({
         where: {
-            id: req.params.id
+            id: req.params.id,
+            user_id: userID
         }
-    }).then(function (dbAuthor) {
-        res.json(dbAuthor);
+    }).then(function (dbTrip) {
+        res.json(dbTrip);
     });
 });
 
@@ -206,17 +210,18 @@ router.get('/mytrips', function (req, res, next) {
 });
 
 /////////// WORKS BUT USER HAS ACCESS TO ANY TRIP?
-           // NEED TO PASS IN USER BELOW?????  . catch????
-           // test w/ dynamic elements later!!!!!!
+        ////// GET HELP 
 
 // ROUTE FOR INDIVIDUAL USERS INDIVIDAL TRIP DASHBOARD
 router.get('/tripDash/:id', function (req, res, next) {
     //this is an attempt////// if statement
-     
+    userID = req.user.id;
+    console.log(userID)
     ////
    db.Trip.findOne({
         where: {
-            id: req.params.id
+            id: req.params.id,
+            user_id: userID
         }
     }).then(function (dbTrip) {
         res.render('tripDash', {
@@ -260,15 +265,11 @@ router.get("/api/budgetbreakdown/trips/:id", function (req, res) {
     });
 });
 
+/////// NEEDS TO BE DEBUGGGGGGGGGED
 // updates planned out budget breakdown of a specific trip
 router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
-
-    
-    // console.log(req.body)
     const {budget} = req.body
-    console.log('000000000000000000000000000000000000000000000000')
-    // console.log(req.body)
-    console.log(budget)
+    // console.log(budget)
     db.BudgetBreakdown.update(budget,
         
            {where: {
@@ -281,16 +282,9 @@ router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
 
 //  POST route for a new instance of a budgetbreakdown
   router.post("/api/budgetbreakdown", function(req, res) {
-    //   console.log('hello world')
-    // const {
-    //     description,
-    //     amountDesired, 
-    //     BudgetCategoryId,
-    //     tripId
-    // }=req.body
+   
     const {budget} = req.body;
-    console.log(req.body)
-    console.log(budget)
+    
     db.BudgetBreakdown.bulkCreate(
         budget).then(function (data) {
         res.json(data);
@@ -305,7 +299,7 @@ router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
 router.get("/api/expenses", function (req, res) {
     
     const userID = req.user.id
-    console.log(userID)
+    // console.log(userID)
     db.Expense.findAll({
             where: {
                 user_id: userID
@@ -316,25 +310,42 @@ router.get("/api/expenses", function (req, res) {
         });
 });
 
+router.get("/api/expenses/trips/:id", function (req, res) {
+    
+    const userID = req.user.id
+    console.log(userID)
+    console.log(req.params.id)
+    db.Expense.findAll({
+        where: {
+            TripId: req.params.id,
+            user_id: userID
+        },
+        include: [db.Trip]
+        })
+        .then(function (dbExpense) {
+            res.json(dbExpense);
+        });
+});
+
 
 
 router.post("/api/expenses", function (req, res) {
-    // console.log('INSERTINGGGGGGGGGGGGGGGGGGGGGG WE ARE INSERTINNNNNNNNNNNG')
+    
     const {
         amount, 
         description, 
-        BudgetBreakdownId
+        BudgetCategoryId,
+        TripId
     } = req.body;
-    // console.log('this is the req.body'+ req.body)
-    // console.log(req.body)
+    
     const userID = req.user.id
-    // console.log('THIS IS THE CONSOLE')
-    // console.log(req.user.id);
+   
     db.Expense.create({
             amount: amount,
             description: description,
             user_id: userID,
-            BudgetBreakdownId: BudgetBreakdownId
+            BudgetCategoryId: BudgetCategoryId,
+            TripId: TripId
             /////////insert foriegn key of user id here 
         }).then(function (data) {
 
@@ -346,14 +357,13 @@ router.post("/api/expenses", function (req, res) {
         });
 });
 
-////////////////
-////////////// DEBUG NOT SHOWING 'NULLLLL' ALSO PASS IN USERID
 router.get("/api/expenses/:id", function (req, res) {
     const userID = req.user.id
 
     db.Expense.findOne({
             where: {
-                id: req.params     
+                id: req.params.id,
+                user_id: userID     
             }
         })
         .then(function (dbExpense) {
