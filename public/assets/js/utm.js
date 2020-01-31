@@ -134,10 +134,10 @@ $.ajax("/api/trips", {
 );
 }
 
-//fnejnfewnfjkenjerngvjerngjerqngernjerngjvregjierbnvjerrekvnerjkerjkgbeberjkbgebgekgbvekbgebgvebv
-//ejdwofnejfnejakbfjkerbgvjrkebgferbfjerf
-///fnjeignfejbgerbgfergfergnerg//
-//frneiogfneriogjreiogh 
+
+///asdoinasdionsda
+//oaisndoisnad
+
 
 });
 
