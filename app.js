@@ -1,3 +1,4 @@
+dotenv.config();
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
@@ -23,9 +24,9 @@ const db = require("./models");
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
-dotenv.config();
 
 
+console.log(process.env.AUTH0_CALLBACK_URL);
 
 // Configure Passport to use Auth0
 var strategy = new Auth0Strategy(
