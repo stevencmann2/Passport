@@ -23,7 +23,7 @@ const db = require('../models')
 
 /* GET index page. */
 router.get('/', function (req, res, next) {
-    
+
     res.render('index', {
         title: 'Welcome to Passport'
     });
@@ -56,7 +56,7 @@ router.get('/user', secured(), function (req, res, next) {
     // create user w email
     // then...
 
-    
+
     res.render('user', {
         title: 'Dashboard'
         // userProfile: JSON.stringify(userProfile, null, 2)
@@ -78,7 +78,7 @@ router.get('/login', passport.authenticate('auth0', {
 // Perform the final stage of authentication and redirect to previously requested URL or '/user'
 router.get('/callback', function (req, res, next) {
     passport.authenticate('auth0', function (err, user, info) {
-        
+
         if (err) {
             return next(err);
         }
@@ -164,7 +164,7 @@ router.post("/api/trips", function (req, res) {
         returning
     } = req.body;
     const userID = req.user.id
- 
+
     db.Trip.create({
             tripname: tripname,
             totalbudget: totalbudget,
@@ -210,7 +210,7 @@ router.get('/mytrips', function (req, res, next) {
 });
 
 /////////// WORKS BUT USER HAS ACCESS TO ANY TRIP?
-        ////// GET HELP 
+////// GET HELP 
 
 // ROUTE FOR INDIVIDUAL USERS INDIVIDAL TRIP DASHBOARD
 router.get('/tripDash/:id', function (req, res, next) {
@@ -218,7 +218,7 @@ router.get('/tripDash/:id', function (req, res, next) {
     userID = req.user.id;
     console.log(userID)
     ////
-   db.Trip.findOne({
+    db.Trip.findOne({
         where: {
             id: req.params.id,
             user_id: userID
@@ -233,8 +233,7 @@ router.get('/tripDash/:id', function (req, res, next) {
 ////////////////   DONE DONE DONE
 //////////
 router.get("/api/budgetbreakdown", function (req, res) {
-    db.BudgetBreakdown.findAll({
-    }).then(function (dbBB) {
+    db.BudgetBreakdown.findAll({}).then(function (dbBB) {
         res.json(dbBB);
     });
 });
@@ -268,36 +267,49 @@ router.get("/api/budgetbreakdown/trips/:id", function (req, res) {
 /////// NEEDS TO BE DEBUGGGGGGGGGED
 // updates planned out budget breakdown of a specific trip
 router.put("/api/budgetbreakdown/trips/:id", function (req, res) {
-    const {budget} = req.body
-    // console.log(budget)
-    db.BudgetBreakdown.update(budget,
-        
-           {where: {
-            TripId: req.params.id
-        }
-    }).then(function (dbBB) {
+    console.log(req)
+    userID = req.user.id
+    const {
+        budget
+    } = req.body
+ 
+    budget.forEach(element => {
+        console.log(`${element} i am ${element.BudgetCategoryId}`)
+    
+    console.log(budget)
+    db.BudgetBreakdown.update(element,
+      
+        {
+            where: {
+                TripId: req.params.id,
+                BudgetCategoryId: element.BudgetCategoryId
+            }
+        }).then(function (dbBB) {
         res.json(dbBB);
     });
+})
 });
 
 //  POST route for a new instance of a budgetbreakdown
-  router.post("/api/budgetbreakdown", function(req, res) {
-   
-    const {budget} = req.body;
-    
+router.post("/api/budgetbreakdown", function (req, res) {
+
+    const {
+        budget
+    } = req.body;
+
     db.BudgetBreakdown.bulkCreate(
-        budget).then(function (data) {
-        res.json(data);
-    })
-    .catch(function (err) {
-        res.json(err);
-    });
+            budget).then(function (data) {
+            res.json(data);
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
 });
 
 // gets expenses by querying user ID
 ///////////// DONE //////////////////
 router.get("/api/expenses", function (req, res) {
-    
+
     const userID = req.user.id
     // console.log(userID)
     db.Expense.findAll({
@@ -311,16 +323,16 @@ router.get("/api/expenses", function (req, res) {
 });
 
 router.get("/api/expenses/trips/:id", function (req, res) {
-    
+
     const userID = req.user.id
     console.log(userID)
     console.log(req.params.id)
     db.Expense.findAll({
-        where: {
-            TripId: req.params.id,
-            user_id: userID
-        },
-        include: [db.Trip]
+            where: {
+                TripId: req.params.id,
+                user_id: userID
+            },
+            include: [db.Trip]
         })
         .then(function (dbExpense) {
             res.json(dbExpense);
@@ -330,16 +342,16 @@ router.get("/api/expenses/trips/:id", function (req, res) {
 
 
 router.post("/api/expenses", function (req, res) {
-    
+
     const {
-        amount, 
-        description, 
+        amount,
+        description,
         BudgetCategoryId,
         TripId
     } = req.body;
-    
+
     const userID = req.user.id
-   
+
     db.Expense.create({
             amount: amount,
             description: description,
@@ -363,7 +375,7 @@ router.get("/api/expenses/:id", function (req, res) {
     db.Expense.findOne({
             where: {
                 id: req.params.id,
-                user_id: userID     
+                user_id: userID
             }
         })
         .then(function (dbExpense) {
