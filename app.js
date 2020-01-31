@@ -1,15 +1,16 @@
+require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var dotenv = require('dotenv');
+// var dotenv = require('dotenv');
 var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
 var flash = require('connect-flash');
 var userInViews = require('./lib/middleware/userInViews');
 var routes = require('./controllers/passportsController.js')
-
+var FileStore = require('session-file-store')(session);
 
 
 
@@ -22,9 +23,6 @@ const db = require("./models");
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
-
-dotenv.config();
-
 
 
 // Configure Passport to use Auth0
@@ -66,17 +64,22 @@ app.set('view engine', 'handlebars');
 
 app.use(logger('dev'));
 app.use(cookieParser());
-
-// config express-session
-var sess = {
-  secret: 'PBJ',
-  cookie: {},
+const sess = {
+  store: new FileStore,
+  secret: 'mySecret',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 };
+// config express-session
+// var sess = {
+//   secret: 'PBJ',
+//   cookie: {},
+//   resave: false,
+//   saveUninitialized: true
+// };
 
 if (app.get('env') === 'production') {
-  sess.cookie.secure = true; // serve secure cookies, requires https
+  //sess.cookie.secure = true; // serve secure cookies, requires https
 }
 
 app.use(session(sess));
@@ -154,3 +157,4 @@ db.sequelize.sync({ force: false }).then(function() {
 
 
 // module.exports = app;
+

@@ -1,7 +1,7 @@
 {
     "development": {
       "username": "root",
-      "password": "phish",
+      "password": "root",
       "database": "passport",
       "host": "localhost",
       "port": 3306,

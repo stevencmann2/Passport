@@ -134,8 +134,10 @@ $.ajax("/api/trips", {
 );
 }
 
+
 ///asdoinasdionsda
 //oaisndoisnad
+
 
 });
 
