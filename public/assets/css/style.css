@@ -60,6 +60,18 @@
     font-family: 'Comfortaa', cursive;
 }
 
+/*My Trips*/
+
+#my-trips {
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+}
+
+#trips-table {
+    margin-left: 25%;
+}
+
+
 
 
 
