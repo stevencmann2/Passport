@@ -25,9 +25,6 @@ const db = require("./models");
 var exphbs = require("express-handlebars");
 
 
-
-console.log(process.env.AUTH0_CALLBACK_URL);
-
 // Configure Passport to use Auth0
 var strategy = new Auth0Strategy(
   {
