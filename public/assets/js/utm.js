@@ -2,6 +2,7 @@
 $(document).ready(function(){
     console.log('utm.js loaded')
 
+
 $("#createTrip").show();
 
 
@@ -96,19 +97,13 @@ const userTripForm = $("#user-trip-form");
 $(document).on("click", "#brandon" , userTripSubmit);
 ///// HANDLES FORM SUBMIT CLICK
 function userTripSubmit(event){
+    event.preventDefault();
   const totalBudget = $("#totalbudget");
 const returning = $("#returning");
 const departing = $("#departing");
 const destination =$("#destination");
 const tripName = $("#tripname");
 
-    event.preventDefault();
-    const totalBudget = $("#totalbudget");
-    const returning = $("#returning");
-    const departing = $("#departing");
-    const destination =$("#destination");
-    const tripName = $("#tripname");
-    
 // TRIP CONSTRUCTOR POST TO DB
 // MAKE SURE PROPERTY NAMES ARE RIGHT
 ///// FORMATED NOW AS yyyy-MM-dd
