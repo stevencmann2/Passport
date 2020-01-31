@@ -13,10 +13,6 @@ var routes = require('./controllers/passportsController.js')
 var FileStore = require('session-file-store')(session);
 
 
-
-
-
-////// OR 30000000//////
 const PORT = process.env.PORT || 3000;
 const db = require("./models");
 
@@ -26,13 +22,11 @@ var exphbs = require("express-handlebars");
 
 
 // Configure Passport to use Auth0
-var strategy = new Auth0Strategy(
-  {
+var strategy = new Auth0Strategy({
     domain: process.env.AUTH0_DOMAIN,
     clientID: process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    callbackURL:
-      process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/callback'
+    callbackURL: process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/callback'
   },
   function (accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
@@ -57,7 +51,9 @@ const app = express();
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", exphbs({
+  defaultLayout: "main"
+}));
 app.set('view engine', 'handlebars');
 
 
@@ -70,27 +66,21 @@ const sess = {
   resave: false,
   saveUninitialized: false
 };
-// config express-session
-// var sess = {
-//   secret: 'PBJ',
-//   cookie: {},
-//   resave: false,
-//   saveUninitialized: true
-// };
 
 if (app.get('env') === 'production') {
   //sess.cookie.secure = true; // serve secure cookies, requires https
 }
 
 app.use(session(sess));
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, '/public')));
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({
+  extended: true
+}));
+app.use(express.json());
 
 app.use(flash());
 
@@ -107,16 +97,8 @@ app.use(function (req, res, next) {
 
 app.use(userInViews());
 
-
-
 // use routes controller
 app.use(routes)
-
-
-
-
-
-
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -125,7 +107,7 @@ app.use(function (req, res, next) {
   next(err);
 });
 
-// Error handlers
+// Error handlers//
 
 // Development error handler
 // Will print stacktrace
@@ -149,12 +131,11 @@ app.use(function (err, req, res, next) {
   });
 });
 
-db.sequelize.sync({ force: false }).then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+db.sequelize.sync({
+  force: false
+}).then(function () {
+  app.listen(PORT, function () {});
 });
 
 
 // module.exports = app;
-

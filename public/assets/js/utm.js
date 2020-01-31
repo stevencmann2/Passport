@@ -1,20 +1,17 @@
 //// UTM - USER TRIP MANAGER
-$(document).ready(function(){
-    console.log('utm.js loaded')
+$(document).ready(function () {
 
+    $("#createTrip").show();
 
-$("#createTrip").show();
+    $("#viewTrip").on("click", function () {
+        event.preventDefault();
+        window.location.href = "/myTrips"
+    });
 
-
-$("#viewTrip").on("click", function () {
-  event.preventDefault();
-  window.location.href="/myTrips"
-});
-
-$("#createTrip").on("click", function () {
-  event.preventDefault();
-  $("#createTrip").hide();
-  $("#shiner").append(` <div>
+    $("#createTrip").on("click", function () {
+        event.preventDefault();
+        $("#createTrip").hide();
+        $("#shiner").append(` <div>
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
@@ -89,55 +86,38 @@ $("#createTrip").on("click", function () {
         </div>
     </form>
 </div>`)
-});
+    });
 
-const userTripForm = $("#user-trip-form");
+    const userTripForm = $("#user-trip-form");
 
-///////submits to constructors to database
-$(document).on("click", "#brandon" , userTripSubmit);
-///// HANDLES FORM SUBMIT CLICK
-function userTripSubmit(event){
-    event.preventDefault();
-  const totalBudget = $("#totalbudget");
-const returning = $("#returning");
-const departing = $("#departing");
-const destination =$("#destination");
-const tripName = $("#tripname");
+    ///////submits to constructors to database
+    $(document).on("click", "#brandon", userTripSubmit);
+    ///// HANDLES FORM SUBMIT CLICK
+    function userTripSubmit(event) {
+        event.preventDefault();
+        const totalBudget = $("#totalbudget");
+        const returning = $("#returning");
+        const departing = $("#departing");
+        const destination = $("#destination");
+        const tripName = $("#tripname");
 
-// TRIP CONSTRUCTOR POST TO DB
-// MAKE SURE PROPERTY NAMES ARE RIGHT
-///// FORMATED NOW AS yyyy-MM-dd
-let newTrip = {
-    tripname: tripName.val().trim(),
-    totalbudget: parseInt(totalBudget.val().trim()),
-    destination: destination.val().trim(),
-    departing: departing.val(),
-    returning: returning.val()
-}
-    console.log(newTrip.totalbudget, typeof newTrip.totalbudget)
-    console.log(newTrip.destination, typeof newTrip.destination)
-    console.log(newTrip.departing, typeof newTrip.departing)
-    console.log(newTrip.returning, typeof newTrip.returning)
-    console.log(newTrip.tripname, typeof newTrip.tripname)
-    console.log(newTrip, typeof newTrip)
+        let newTrip = {
+            tripname: tripName.val().trim(),
+            totalbudget: parseInt(totalBudget.val().trim()),
+            destination: destination.val().trim(),
+            departing: departing.val(),
+            returning: returning.val()
+        }
 
-// Send the POST request.
-$.ajax("/api/trips", {
-  type: "POST",
-  data: newTrip
-}).then(
-  function() {
-    console.log("added new trip");
-    // Reload the page to get the updated list
-    window.location.href = "/mytrips";
-  }
-);
-}
-
-
-///asdoinasdionsda
-//oaisndoisnad
-
+        // Send the POST request.
+        $.ajax("/api/trips", {
+            type: "POST",
+            data: newTrip
+        }).then(
+            function () {
+                window.location.href = "/mytrips";
+            }
+        );
+    }
 
 });
-
