@@ -10,7 +10,7 @@ var Auth0Strategy = require('passport-auth0');
 var flash = require('connect-flash');
 var userInViews = require('./lib/middleware/userInViews');
 var routes = require('./controllers/passportsController.js')
-
+var FileStore = require('session-file-store')(session);
 
 
 
@@ -64,14 +64,19 @@ app.set('view engine', 'handlebars');
 
 app.use(logger('dev'));
 app.use(cookieParser());
-
-// config express-session
-var sess = {
-  secret: 'PBJ',
-  cookie: {},
+const sess = {
+  store: new FileStore,
+  secret: 'mySecret',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 };
+// config express-session
+// var sess = {
+//   secret: 'PBJ',
+//   cookie: {},
+//   resave: false,
+//   saveUninitialized: true
+// };
 
 if (app.get('env') === 'production') {
   sess.cookie.secure = true; // serve secure cookies, requires https
