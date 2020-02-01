@@ -132,7 +132,7 @@ app.use(function (err, req, res, next) {
 });
 
 db.sequelize.sync({
-  force: false
+  force: true
 }).then(function () {
   app.listen(PORT, function () {});
 });
