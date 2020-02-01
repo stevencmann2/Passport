@@ -3,6 +3,7 @@ const router = express.Router();
 //FROM AUTH.JS//
 // var express = require('express');
 // var router = express.Router();
+// var sendMail = require('../public/assets/js/contact');
 var passport = require('passport');
 var dotenv = require('dotenv');
 var util = require('util');
@@ -11,6 +12,8 @@ var querystring = require('querystring');
 dotenv.config();
 /// FROM USERS .JS //////////
 var secured = require('../lib/middleware/secured');
+const nodemailer = require('nodemailer');
+const mailGun = require('nodemailer-mailgun-transport');
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
@@ -20,6 +23,47 @@ const db = require('../models')
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
+
+const transporter = nodemailer.createTransport(mailGun());
+
+const auth = {
+    auth: {
+        api_key: '81fadf6a029207bb6526b9c443e4fdb2-074fa10c-dc354498',
+        domain: 'sandbox6a458234bbe34ecfa1d36814305d03af.mailgun.org'
+    }
+};
+
+const sendMail = (email, subject, text, cb) => {
+    const mailOptions = {
+        from: email,
+        to: 'group2.passport@gmail.com',
+        subject,
+        text
+    };
+
+    transporter.sendMail(mailOptions, function (err, data) {
+        if (err) {
+            cb(err, null);
+        } else {
+            cb(null, data);
+        }
+    });
+};
+
+var contactjs = ('/assets/js/contact.js');
+
+router.post('/email', function ( req, res) {
+    const { subject, email, text} = req.body;
+    console.log('Data: ', req.body);
+  
+    sendMail(email, subject, text, function(err, data) {
+      if (err) {
+        res.status(500).json({ message: 'Internal Error' });
+      } else {
+        res.json({ message: 'Email Sent' });
+      }
+    });
+  });
 
 /* GET index page. */
 router.get('/', function (req, res, next) {
@@ -122,7 +166,8 @@ router.get('/logout', (req, res) => {
 router.get('/contact', function (req, res, next) {
 
     res.render('contact', {
-        title: 'Contact our Team'
+        title: 'Contact our Team', 
+        contactform: contactjs
     });
 });
 

@@ -1,5 +1,6 @@
 require('dotenv').config();
 var express = require('express');
+// var sendMail = require('./public/assets/js/contact')
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -11,6 +12,7 @@ var flash = require('connect-flash');
 var userInViews = require('./lib/middleware/userInViews');
 var routes = require('./controllers/passportsController.js')
 var FileStore = require('session-file-store')(session);
+
 
 
 const PORT = process.env.PORT || 3000;
@@ -138,4 +140,4 @@ db.sequelize.sync({
 });
 
 
-// module.exports = app;
+module.exports = app;
