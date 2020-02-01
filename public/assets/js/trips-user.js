@@ -1,6 +1,7 @@
 ///// JQUERY TO DISPLAY THE TRIPS TO THE USER
 
 $(document).ready(function () {
+  
   let timeNow = moment().format("YYYY-MM-DD");
   notrips = $(".notrips")
   tripsContainer = $(".mytrips-container");
@@ -22,7 +23,7 @@ $(document).ready(function () {
   function displayNoTrips() {
     const H2 = $("<h2>");
     H2.css({
-      "text-align": "center",
+      
       "margin-top": "50px"
     });
     H2.html("You dont appear to have any trips, click <a href='/user'>here</a> in order to create a new trip.");
@@ -43,6 +44,11 @@ $(document).ready(function () {
      `)
     }
   }
+
+ 
+
+
+
 
   getTrips();
 

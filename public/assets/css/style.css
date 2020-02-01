@@ -71,10 +71,14 @@
     margin-left: 25%;
 }
 
+#diffDisplay {
+    text-align: center;
+}
 
+#totalBudgetAmount {
+    text-align: center;
+}
 
-
-
-
-
-
+#TotalExpenseAmount {
+    text-align: center;
+}

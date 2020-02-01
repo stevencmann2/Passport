@@ -46,12 +46,14 @@ module.exports = function (sequelize, DataTypes) {
   Trip.associate = function (models) {
     // We're saying that a Post should belong to an Author
     Trip.hasMany(models.BudgetBreakdown, {
+      onDelete: 'cascade',
+      hooks: true
 
     });
     Trip.hasMany(models.Expense, {
+      onDelete: "cascade",
+      hooks: true
     });
   }
   return Trip;
 };
-
-

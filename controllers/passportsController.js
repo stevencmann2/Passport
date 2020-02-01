@@ -21,11 +21,22 @@ const db = require('../models')
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 
+
+/// DO NOT CHANGE VAR HERER
+var tdJS = ('/assets/js/tripDash.js');
+var userJS = ('/assets/js/trips-user.js');
+var utmJS = ('/assets/js/utm.js');
+var expensesJS = ('/assets/js/expenses.js');
+
+
+
+
 /* GET index page. */
 router.get('/', function (req, res, next) {
 
     res.render('index', {
-        title: 'Welcome to Passport'
+        title: 'Welcome to Passport',
+
     });
 });
 
@@ -34,13 +45,7 @@ router.get('/', function (req, res, next) {
 router.get('/about', function (req, res, next) {
     res.render('about', {
         title: 'About Passport'
-    });
-});
 
-/* GET services page. */
-router.get('/services', function (req, res, next) {
-    res.render('services', {
-        title: 'Passport Services'
     });
 });
 
@@ -58,7 +63,8 @@ router.get('/user', secured(), function (req, res, next) {
 
 
     res.render('user', {
-        title: 'Dashboard'
+        title: 'Dashboard',
+        phish: utmJS
         // userProfile: JSON.stringify(userProfile, null, 2)
 
     });
@@ -97,7 +103,7 @@ router.get('/callback', function (req, res, next) {
 
 // Perform session logout and redirect to homepage
 router.get('/logout', (req, res) => {
-    // req.logout();
+    req.logout();
 
     var returnTo = req.protocol + '://' + req.hostname;
     var port = req.connection.localPort;
@@ -116,6 +122,11 @@ router.get('/logout', (req, res) => {
 
     res.redirect(logoutURL);
 });
+
+
+
+
+
 
 
 /* GET contact page. */
@@ -181,9 +192,37 @@ router.get("/api/trips/:id", function (req, res) {
 /* GET MYTRIPS . */
 router.get('/mytrips', function (req, res, next) {
     res.render('myTrips', {
-        title: 'My Trips'
+        title: 'My Trips',
+        landreth: userJS
     });
 });
+
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+router.delete("/api/trips/:id", function (req, res) {
+    userID = req.user.id;
+    db.Trip.destroy({
+        where: {
+            id: req.params.id,
+            user_id: userID
+        }
+    }).then(function (dbTrip) {
+        res.json(dbTrip);
+    });
+});
+
 
 // ROUTE FOR INDIVIDUAL USERS INDIVIDAL TRIP DASHBOARD
 router.get('/tripDash/:id', function (req, res, next) {
@@ -195,7 +234,8 @@ router.get('/tripDash/:id', function (req, res, next) {
         }
     }).then(function (dbTrip) {
         res.render('tripDash', {
-            title: 'Dashboard'
+            title: 'Dashboard',
+            tedeschi: tdJS
         });
     });
 });
@@ -227,6 +267,24 @@ router.get("/api/budgetbreakdown/trips/:id", function (req, res) {
         res.json(dbBB);
     });
 });
+
+
+//// HERES THE PROBLEM 
+router.put("/api/budgetbreakdown/:id", function (req, res) {
+    
+    console.log(req.body)
+    console.log(req.params.id)
+    db.BudgetBreakdown.update(req.body, {
+        where: {
+            TripId: req.params.id,
+            BudgetCategoryId: req.body.BudgetCategoryId
+        }
+    }).then(function (dbBB) {
+        res.json(dbBB);
+    });
+});
+
+
 
 /////// NEEDS TO BE DEBUGGGGGGGGGED
 // updates planned out budget breakdown of a specific trip
@@ -269,6 +327,7 @@ router.post("/api/budgetbreakdown", function (req, res) {
             res.json(err);
         });
 });
+
 
 // gets expenses by querying user ID
 router.get("/api/expenses", function (req, res) {
