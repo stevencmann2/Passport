@@ -1,16 +1,27 @@
+  
+<body>
 <div class="container">
 
+
+<div id="diffDisplay" class="m-auto justify-content-center">
+
+</div>
     <!--Budget Manager Card -->
     <div class="card">
       <div class="card-header">
         Your Budget Manager
       </div>
       <div class="card-body">
-        <h5 class="card-title"> </h5>
-        <p class="card-text" id="breakdownBody"></p>
+        <h5 class="card-title" id="totalBudgetAmount"> </h5>
+        <div class="card-text" id="breakdownBody"></div>
         {{!-- <canvas class="mb-2" id="budgetChart"></canvas> --}}
+        
+        <div class="row m-auto text-center" id="barDiv">
+       </div>
+          
         <button type="submit" class="btn btn-success btn-block btn-lg mb-4" id="budgetManager" value="Submit">Set Budget</button>
-           
+        <button type="button" class="btn btn-success btn-block btn-lg mb-4" id="savingsModalshow">Add Savings</button>
+          
       </div>
     </div>
 
@@ -22,8 +33,8 @@
         Expenses
       </div>
       <div class="card-body">
-        <h5 class="card-title">Your Expenses</h5>
-        <p class="card-text" id="expenseBody"></p>
+        <h5 class="card-title" id="TotalExpenseAmount"></h5>
+        <div class="card-text" id="expenseBody"></div>
         <button type="submit" class="btn btn-success btn-block btn-lg mb-4" id="addExpense" value="submit">Add Expense</button>
       </div>
 
@@ -210,13 +221,77 @@
 
           </div>
         </div>
-
-
       </div>
 
 
+<!--SAVINGS MODAL -->
+    <div id="savingsModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
 
+            <h5 class="modal-title"><strong>Budget Manager</strong></h5>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form id="savingsform">
+              <fieldset>
+                <legend>Add Your Savings to a Category:</legend>
+
+                <div class="form-group">
+                  <label>Amount ($)</label>
+                  <input type="number" name="savingsamount" id="savingsamount" class="form-control prc" required>
+                  <br>
+                  
+                  <select id="savingsCategory">
+                      <option id="airfareSavings" value="1">Airfare</option>
+                      <option id="transportationSavings" value="2">Transportation</option>
+                      <option id="lodgingSavings" value="3">Lodging</option>
+                      <option id="foodSavings" value="4">Food and Drink</option>
+                      <option id="activitiesSavings" value="5">Activities</option>
+                      <option id="emergencySavings" value="6">Emergency</option>
+                      <option id="miscSavings"value="7">Miscellaneous</option>
+                </select>
+                </div>
+              
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" id="addSavings" value="submit">Add Savings</button>
+        
+                </div>
+              </fieldset>
+            </form>
+
+
+
+
+
+          </div>
+
+        </div>
+      </div>
     </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<div class="text-center m-auto mt-5"id="deleteDiv">
+<button type="button" class="btn btn-danger mt-2" id="deleteTrip">Delete Trip</button>
+</div>
   </div>
+
+</body>

@@ -1,6 +1,6 @@
 //// UTM - USER TRIP MANAGER
 $(document).ready(function () {
-
+    console.log("loaded by handlebars")
     $("#createTrip").show();
 
     $("#viewTrip").on("click", function () {
@@ -20,9 +20,7 @@ $(document).ready(function () {
         </div>
     </div>
 </div>
-
 <br>
-
 <div class="container">
     <form id="user-trip-form">
         <div class="row">

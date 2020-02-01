@@ -3,7 +3,6 @@ const router = express.Router();
 //FROM AUTH.JS//
 // var express = require('express');
 // var router = express.Router();
-// var sendMail = require('../public/assets/js/contact');
 var passport = require('passport');
 var dotenv = require('dotenv');
 var util = require('util');
@@ -12,8 +11,6 @@ var querystring = require('querystring');
 dotenv.config();
 /// FROM USERS .JS //////////
 var secured = require('../lib/middleware/secured');
-const nodemailer = require('nodemailer');
-const mailGun = require('nodemailer-mailgun-transport');
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
@@ -24,52 +21,22 @@ const db = require('../models')
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 
-const transporter = nodemailer.createTransport(mailGun());
 
-const auth = {
-    auth: {
-        api_key: '81fadf6a029207bb6526b9c443e4fdb2-074fa10c-dc354498',
-        domain: 'sandbox6a458234bbe34ecfa1d36814305d03af.mailgun.org'
-    }
-};
+/// DO NOT CHANGE VAR HERER
+var tdJS = ('/assets/js/tripDash.js');
+var userJS = ('/assets/js/trips-user.js');
+var utmJS = ('/assets/js/utm.js');
+var expensesJS = ('/assets/js/expenses.js');
 
-const sendMail = (email, subject, text, cb) => {
-    const mailOptions = {
-        from: email,
-        to: 'group2.passport@gmail.com',
-        subject,
-        text
-    };
 
-    transporter.sendMail(mailOptions, function (err, data) {
-        if (err) {
-            cb(err, null);
-        } else {
-            cb(null, data);
-        }
-    });
-};
 
-var contactjs = ('/assets/js/contact.js');
-
-router.post('/email', function ( req, res) {
-    const { subject, email, text} = req.body;
-    console.log('Data: ', req.body);
-  
-    sendMail(email, subject, text, function(err, data) {
-      if (err) {
-        res.status(500).json({ message: 'Internal Error' });
-      } else {
-        res.json({ message: 'Email Sent' });
-      }
-    });
-  });
 
 /* GET index page. */
 router.get('/', function (req, res, next) {
 
     res.render('index', {
-        title: 'Welcome to Passport'
+        title: 'Welcome to Passport',
+
     });
 });
 
@@ -78,13 +45,7 @@ router.get('/', function (req, res, next) {
 router.get('/about', function (req, res, next) {
     res.render('about', {
         title: 'About Passport'
-    });
-});
 
-/* GET services page. */
-router.get('/services', function (req, res, next) {
-    res.render('services', {
-        title: 'Passport Services'
     });
 });
 
@@ -102,7 +63,8 @@ router.get('/user', secured(), function (req, res, next) {
 
 
     res.render('user', {
-        title: 'Dashboard'
+        title: 'Dashboard',
+        phish: utmJS
         // userProfile: JSON.stringify(userProfile, null, 2)
 
     });
@@ -141,7 +103,7 @@ router.get('/callback', function (req, res, next) {
 
 // Perform session logout and redirect to homepage
 router.get('/logout', (req, res) => {
-    // req.logout();
+    req.logout();
 
     var returnTo = req.protocol + '://' + req.hostname;
     var port = req.connection.localPort;
@@ -162,12 +124,16 @@ router.get('/logout', (req, res) => {
 });
 
 
+
+
+
+
+
 /* GET contact page. */
 router.get('/contact', function (req, res, next) {
 
     res.render('contact', {
-        title: 'Contact our Team', 
-        contactform: contactjs
+        title: 'Contact our Team'
     });
 });
 
@@ -226,9 +192,37 @@ router.get("/api/trips/:id", function (req, res) {
 /* GET MYTRIPS . */
 router.get('/mytrips', function (req, res, next) {
     res.render('myTrips', {
-        title: 'My Trips'
+        title: 'My Trips',
+        landreth: userJS
     });
 });
+
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+//////////DELETION OF TRIPS
+// NOT NOT NOT NOT 
+router.delete("/api/trips/:id", function (req, res) {
+    userID = req.user.id;
+    db.Trip.destroy({
+        where: {
+            id: req.params.id,
+            user_id: userID
+        }
+    }).then(function (dbTrip) {
+        res.json(dbTrip);
+    });
+});
+
 
 // ROUTE FOR INDIVIDUAL USERS INDIVIDAL TRIP DASHBOARD
 router.get('/tripDash/:id', function (req, res, next) {
@@ -240,7 +234,8 @@ router.get('/tripDash/:id', function (req, res, next) {
         }
     }).then(function (dbTrip) {
         res.render('tripDash', {
-            title: 'Dashboard'
+            title: 'Dashboard',
+            tedeschi: tdJS
         });
     });
 });
@@ -272,6 +267,24 @@ router.get("/api/budgetbreakdown/trips/:id", function (req, res) {
         res.json(dbBB);
     });
 });
+
+
+//// HERES THE PROBLEM 
+router.put("/api/budgetbreakdown/:id", function (req, res) {
+    
+    console.log(req.body)
+    console.log(req.params.id)
+    db.BudgetBreakdown.update(req.body, {
+        where: {
+            TripId: req.params.id,
+            BudgetCategoryId: req.body.BudgetCategoryId
+        }
+    }).then(function (dbBB) {
+        res.json(dbBB);
+    });
+});
+
+
 
 /////// NEEDS TO BE DEBUGGGGGGGGGED
 // updates planned out budget breakdown of a specific trip
@@ -314,6 +327,7 @@ router.post("/api/budgetbreakdown", function (req, res) {
             res.json(err);
         });
 });
+
 
 // gets expenses by querying user ID
 router.get("/api/expenses", function (req, res) {
