@@ -17,7 +17,7 @@ All your travel needs in one place. You can set your travel budget, invite frien
   - Github
   - LinkedIn
 - Daniel Devarajan: "The Council", Backend Developer
-  - Portfolio: https://github.com/DAnMaN15726/Bootstrap-Portfolio
+  - Portfolio: https://danman15726.github.io/Bootstrap-Portfolio/
   - Github: https://github.com/DAnMaN15726
   - LinkedIn: https://www.linkedin.com/in/danieldev15726/
 
