@@ -1,25 +1,19 @@
 # Passport
 
-> [Live Site](Put the deployed link here once you have it)
+https://passport-aw.herokuapp.com/
 
 ## Project Summary
 
-All your travel needs in one place. You can set your travel budget, invite friends, and plan your vacations all in one spot. 
+Your go-to budgeting app for your travel needs.  
 
 ## Developers
 
-- Ashton Wetsel: CEO, UI, Frontend Development, Site Design  
-  - Portfolio
-  - Github
-  - LinkedIn
-- Steven Mann: CTO, User Authentification, Database Architect, Backend Developer
-  - Portfolio
-  - Github
-  - LinkedIn
-- Daniel Devarajan: "The Council", Backend Developer
-  - Portfolio: https://danman15726.github.io/Bootstrap-Portfolio/
-  - Github: https://github.com/DAnMaN15726
-  - LinkedIn: https://www.linkedin.com/in/danieldev15726/
+
+- Ashton Wetsel: UI, Frontend Development, Site Design  
+- Steven Mann: CTO, User Authentification, Backend Developer
+- Daniel Devajaran: "The Council", Database Architect, Backend Developer
+
+
 
 ## Animated Gifs/Pictures of App
 
@@ -27,28 +21,32 @@ All your travel needs in one place. You can set your travel budget, invite frien
 
 ## Tech Stack
 
-- What languages is it written with: Javascript, Boostrap, Sass, MYSQL
-- What libraries are used: Node, Firebase, Passport
-- Update at the end of the project
+- What languages is it written with: Javascript, MYSQL, Handlebars, Bootstrap
+- What libraries are used: Node, Firebase, Passport, Passport-Auth0, sequelize, Node Mailer, Node Mailer Gun, Express
+
 
 ## APIs
 
-- List the two apis
-- Update it has the project evolves
-- make sure its accurate at the end
+- Passport Auth0
 
 ## MVP
 
-- List the Must Have Features
+- 2 Step Authentification
+- Graphs of User Budget
+- User Expenses
+- User Savings
+
 
 ## Stretch Goals
 
-- What you will try to accomplish after MVP
+- Group page where you can invite friends and have shared expenses together (ex. hotel)
 
 ## Future Development
 
-- Whats been tabled
-- Update this after the project has been completed
+- Group page
+- E-Commerce API that updates your savings and expenses in Passport without having to manually log it.
+- Google Map API so you can map how far your hotel and activites are from one another
+- Group messaging
 
 ## Credits/Resources
 
