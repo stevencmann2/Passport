@@ -12,14 +12,14 @@ All your travel needs in one place. You can set your travel budget, invite frien
   - Portfolio
   - Github
   - LinkedIn
-- Steven Mann: CTO, User Authentification, Backend Developer
+- Steven Mann: CTO, User Authentification, Database Architect, Backend Developer
   - Portfolio
   - Github
   - LinkedIn
-- Daniel Devajaran: "The Council", Database Architect, Backend Developer
-  - Portfolio
-  - Github
-  - LinkedIn
+- Daniel Devarajan: "The Council", Backend Developer
+  - Portfolio: https://danman15726.github.io/Bootstrap-Portfolio/
+  - Github: https://github.com/DAnMaN15726
+  - LinkedIn: https://www.linkedin.com/in/danieldev15726/
 
 ## Animated Gifs/Pictures of App
 
