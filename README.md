@@ -8,9 +8,12 @@ Your go-to budgeting app for your travel needs.
 
 ## Developers
 
+
 - Ashton Wetsel: UI, Frontend Development, Site Design  
 - Steven Mann: CTO, User Authentification, Backend Developer
 - Daniel Devajaran: "The Council", Database Architect, Backend Developer
+
+
 
 ## Animated Gifs/Pictures of App
 
