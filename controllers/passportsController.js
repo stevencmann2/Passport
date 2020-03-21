@@ -49,6 +49,15 @@ router.get('/about', function (req, res, next) {
     });
 });
 
+/* GET news page. */
+router.get('/', function (req, res, next) {
+
+    res.render('news', {
+        title: 'News',
+
+    });
+});
+
 
 /* GET user profile. */
 router.get('/user', secured(), function (req, res, next) {
