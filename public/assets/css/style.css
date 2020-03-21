@@ -27,6 +27,13 @@
     padding: 40px 0;
 }
 
+/*News Page*/
+
+#news {
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+}
+
 /*Services Page*/
 
 .card-1 {
