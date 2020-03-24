@@ -27,6 +27,32 @@
     padding: 40px 0;
 }
 
+/*News Page*/
+
+#news-header {
+    margin-top: 100px;
+    margin-left: 200px;
+}
+
+#notify {
+    font-family: 'Comfortaa', cursive;
+    margin-left: 50px;
+    margin-right: 150px;
+}
+
+.footer-containter {
+    text-align: center;
+    padding-top: 90px;
+    font-size: small;
+    font-family: 'Comfortaa', cursive;
+
+}
+
+#news {
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+}
+
 /*Services Page*/
 
 .card-1 {

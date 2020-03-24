@@ -33,7 +33,6 @@ var expensesJS = ('/assets/js/expenses.js');
 
 /* GET index page. */
 router.get('/', function (req, res, next) {
-
     res.render('index', {
         title: 'Welcome to Passport',
 
@@ -45,6 +44,14 @@ router.get('/', function (req, res, next) {
 router.get('/about', function (req, res, next) {
     res.render('about', {
         title: 'About Passport'
+
+    });
+});
+
+/* GET news page. */
+router.get('/news', function (req, res, next) {
+    res.render('news', {
+        title: 'News',
 
     });
 });
