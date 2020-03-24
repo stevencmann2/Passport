@@ -29,8 +29,26 @@
 
 /*News Page*/
 
+.news-header {
+    margin-top: 200px;
+}
+
+.input-group {
+    margin-left: 800px;
+    font-family: 'Comfortaa', cursive;
+}
+
+.footer-containter {
+    text-align: center;
+    padding-top: 200px;
+    font-size: small;
+    font-family: 'Comfortaa', cursive;
+
+}
+
 #news {
     text-align: center;
+    margin-left: 700px;
     font-family: 'Comfortaa', cursive;
 }
 
