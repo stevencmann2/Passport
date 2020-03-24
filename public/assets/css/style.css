@@ -29,20 +29,29 @@
 
 /*News Page*/
 
-#news-header {
-    margin-top: 100px;
-    margin-left: 200px;
+.news-container {
+    margin-top: 50px;
 }
 
-#notify {
-    font-family: 'Comfortaa', cursive;
-    margin-left: 50px;
-    margin-right: 150px;
+#news-header {
+    text-align: center;
 }
+
+.demo-container {
+    margin-left: 480px;
+}
+
+
+#resp-container {
+    position: relative; 
+    overflow: hidden ; 
+    
+}
+
 
 .footer-containter {
     text-align: center;
-    padding-top: 90px;
+    padding-top: 60px;
     font-size: small;
     font-family: 'Comfortaa', cursive;
 
