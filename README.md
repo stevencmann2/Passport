@@ -22,7 +22,7 @@ https://passport-aw.herokuapp.com/
 ## Sample Login
 
 - Note:
-  - Due to the group nature of this project, it may be best to inform Steven Mann (stevencmann2@gmail.com) of your attempted login to grant permissions from the Two-Step Authentication process. We apoligize for any inconvenience this may cause.
+  - Due to the group nature of this project, it may be best to inform Steven Mann (stevencmann2@gmail.com) of your attempted login in order to grant permissions from the Two-Step Authentication process. We apoligize for any inconvenience this may cause.
 - Email
   - keys@keys.com
 - Password
@@ -36,19 +36,20 @@ https://passport-aw.herokuapp.com/
 ## Tech Stack
 
 - What languages is it written with: Javascript, MYSQL, Handlebars, Bootstrap
-- What libraries are used: Node, Firebase, Passport, Passport-Auth0, sequelize, Node Mailer, Node Mailer Gun, Express
+- What libraries are used: Node, Firebase, Passport, Passport-Auth0, Sequelize, Node Mailer, Node Mailer Gun, Express, Chart.js
 
 
 ## APIs
 
-- Passport Auth0
+- Passport 
+- Auth0
 
 ## MVP
 
-- 2 Step Authentification
-- Graphs of User Budget
-- User Expenses
-- User Savings
+- [x] 2 Step Authentification
+- [x] Graphs of User Budget
+- [x] User Expenses
+- [x] User Savings
 
 
 ## Stretch Goals
@@ -57,7 +58,7 @@ https://passport-aw.herokuapp.com/
 
 ## Future Development
 
-- Group page
+- Group view vs. Individual view
 - E-Commerce API that updates your savings and expenses in Passport without having to manually log it.
 - Google Map API so you can map how far your hotel and activites are from one another
 - Group messaging
