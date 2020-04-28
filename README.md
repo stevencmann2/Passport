@@ -6,6 +6,11 @@
 
 Your go-to budgeting app for your travel needs.  
 
+
+## At A Glance
+
+![Homescreen for App](./public/assets/images/demo.png)
+
 ## Developers
 
 - Ashton Wetsel: UI, Frontend Development, Site Design  
