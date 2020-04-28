@@ -21,6 +21,8 @@ https://passport-aw.herokuapp.com/
 
 ## Sample Login
 
+- Note:
+  - Due to the group nature of this project, it may be best to inform Steven Mann (stevencmann2@gmail.com) of your attempted login to grant permissions from the Two-Step Authentication process. We apoligize for any inconvenience this may cause.
 - Email
   - keys@keys.com
 - Password
