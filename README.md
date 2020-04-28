@@ -1,6 +1,6 @@
 # Passport
 
-https://passport-aw.herokuapp.com/
+
 
 ## Project Summary
 
@@ -8,12 +8,24 @@ Your go-to budgeting app for your travel needs.
 
 ## Developers
 
-
 - Ashton Wetsel: UI, Frontend Development, Site Design  
 - Steven Mann: CTO, User Authentification, Backend Developer
+  - Portfolio: https://steven-mann-portfolio.netlify.app/
+  - Github: https://github.com/stevencmann2
+  - LinkedIn: https://www.linkedin.com/in/steven-mann-b54494a6/
 - Daniel Devajaran: "The Council", Database Architect, Backend Developer
 
+## Deployment
 
+https://passport-aw.herokuapp.com/
+
+## Sample Login
+
+- Email
+  - keys@keys.com
+- Password
+  - Keys1234!
+  
 
 ## Animated Gifs/Pictures of App
 
